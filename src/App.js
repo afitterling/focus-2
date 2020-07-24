@@ -3,18 +3,26 @@ import './App.css';
 import {MainList} from './focus/main';
 import {NewInput} from './focus/new-input';
 
-function App() {
+class App extends React.Component {
 
-  const onAdd = ({title, desc}) => {
-    console.log('add', title, desc);
+  constructor () {
+    super();
+    this.state = {items: []};
   }
 
-  return (
-    <div className="ui">
-      <MainList></MainList>
-      <NewInput onAdd={onAdd}></NewInput>
-    </div>    
-  );
+  onAdd = ({title, desc}) => {
+    console.log('add', title, desc);
+    this.setState({items: [...this.state.items, {title: title, desc: desc}]});
+  }
+
+  render () {
+    return (
+      <div className="ui">
+        <MainList items={this.state.items}></MainList>
+        <NewInput onAdd={this.onAdd}></NewInput>
+      </div>    
+    );  
+  }
 }
 
 export default App;

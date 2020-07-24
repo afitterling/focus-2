@@ -7,6 +7,8 @@ export const NewInput = ({onAdd}) => {
     const onSubmit = () => {
         console.log(form);
         onAdd(form);
+        form.title = '';
+        form.desc = '';
     }
 
     const onChange = (field) => {
