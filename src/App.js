@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {MainList} from './focus/main';
 import {NewInput} from './focus/new-input';
+import { v4 as uuidv4 } from 'uuid';
 
 class App extends React.Component {
 
@@ -12,7 +13,7 @@ class App extends React.Component {
 
   onAdd = ({title, desc}) => {
     console.log('add', title, desc);
-    this.setState({items: [...this.state.items, {title: title, desc: desc}]});
+    this.setState({items: [...this.state.items, {id: uuidv4(), title: title, desc: desc}]});
   }
 
   render () {
