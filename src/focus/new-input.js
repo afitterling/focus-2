@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
+import { v4 as uuidv4 } from 'uuid';
 
 const emptyForm = {title: '', desc: ''};
 
@@ -15,9 +16,8 @@ export class NewInput extends React.Component {
     }
 
     onSubmit = () => {
-        console.log(this.state.form);
-        this.onAdd(this.state.form);
-        this.setState({form: {...emptyForm}});
+        this.onAdd({id: uuidv4(), ...this.state.form});
+        this.setState({form: {...emptyForm}});        
     }
 
     onChange = (field) => {
