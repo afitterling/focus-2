@@ -9,7 +9,7 @@ export const MainList = ({items, onDelete}) => {
             {items.map(({id, title, desc}) => (
                 <div class="item" key={id}>
                     <div class="content">
-                        <div class="header"><button className="button ui" onClick={onDelete(id)}><i className="icon close"></i></button>{title}</div>
+                        <div class="header"><button className="circular icon button ui" onClick={onDelete(id)}><i className="icon trash"></i></button>{title}</div>
                         {desc}                        
                     </div>
                 </div>                
