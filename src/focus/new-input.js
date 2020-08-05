@@ -17,7 +17,8 @@ export class NewInput extends React.Component {
     }
 
     onSubmit = () => {
-      this.onAdd({id: uuidv4(), ...this.state.form});
+      const newItem = {id: uuidv4(), ...this.state.form};
+      this.onAdd(newItem);
       this.setState({form: {...emptyForm}});        
     }
 

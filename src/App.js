@@ -44,6 +44,15 @@ class App extends React.Component {
   componentDidMount(){
     const items = JSON.parse(localStorage.getItem('items')) || [];
     console.log(items);
+    this.setState({values: items.map(
+      (i) => {
+        return {
+          key: i.id,
+          label: '',
+          values: {leisure: i.leisure, reconsilation: i.reconsilation, career: i.career, health: i.health}
+        }
+      }
+    )});
     this.setState({items: items});    
   }
 
