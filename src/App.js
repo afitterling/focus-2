@@ -84,7 +84,7 @@ class App extends React.Component {
         <MainList onDelete={this.onDelete} items={this.state.items}></MainList>
         { 
           this.state.showNewForm ? <NewInput onAdd={this.onAdd}></NewInput> : 
-          <button className="ui button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
+          <button className="ui circular button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
         }        
         <Container>
           <RadarChart variables={dimensions} values={this.state.values}></RadarChart>
