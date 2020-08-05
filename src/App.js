@@ -7,9 +7,9 @@ import { RadarChart } from './graphs/radar';
 import { Container } from 'semantic-ui-react';
 
 const dimensions = [
-  {key: 'leisure', label: 'Leisure'},
   {key: 'career', label: 'Job Career'},
   {key: 'reconsilation', label: 'Life/Freedom'},
+  {key: 'leisure', label: 'Leisure'},
   {key: 'health', label: 'Health'},
   {key: 'family', label: 'Family'},
   {key: 'sustain', label: 'Sustainability'}
