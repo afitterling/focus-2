@@ -3,15 +3,16 @@ import './App.css';
 import {MainList} from './focus/main';
 import {NewInput} from './focus/new-input';
 import { v4 as uuidv4 } from 'uuid';
-//import Repository from './services/repository';
 import { RadarChart } from './graphs/radar';
 import { Container } from 'semantic-ui-react';
 
 const dimensions = [
   {key: 'health', label: 'Health'},
-  {key: 'jobcareer', label: 'Job Career'},
+  {key: 'career', label: 'Job Career'},
   {key: 'leisure', label: 'Leisure'},
-  {key: 'reconsilation', label: 'Reconsilation'},
+  {key: 'reconsilation', label: 'Life/Freedom'},
+  {key: 'family', label: 'Family'},
+  {key: 'sustain', label: 'Sustainability'}
 ];
 
 class App extends React.Component {
@@ -25,13 +26,15 @@ class App extends React.Component {
     };
   }
 
-  onAdd = ({title, desc, leisure, health, career, reconsilation}) => {
-    const newItem = {id: uuidv4(), title, desc, leisure, health, career, reconsilation};
+  onAdd = (formParams) => {
+    const newItem = {id: uuidv4(), ...formParams};
     console.log(newItem);
     this.setState({items: [...this.state.items, newItem]});    
     localStorage.setItem('items', JSON.stringify([...this.state.items, newItem]));
     this.setState({showNewForm: false});
-    this.setState({values: [...this.state.values, {key: newItem.id, label: title, values: {leisure, health, career, reconsilation}}]});
+    // so cool!
+    const {id, desc, title, ...formParamsDimensions} = {...formParams}; // exclude id desc title
+    this.setState({values: [...this.state.values, {key: newItem.id, label: title, values: {...formParamsDimensions}}]});
   }
 
   onDelete = (id) => () => {

@@ -3,7 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 import { RatingControlled } from '../rating';
 
-const dimensions = {leisure: 0, career: 0, reconsilation: 0, health: 0};
+const dimensions = {leisure: 0, career: 0, reconsilation: 0, health: 0, family: 0, sustain: 0};
 const emptyForm = {title: '', desc: '', ...dimensions};
 
 export class NewInput extends React.Component {
@@ -49,8 +49,10 @@ export class NewInput extends React.Component {
           </Form.Field>
           <RatingControlled onValueChange={this.onDimensionChange('leisure')} label={'Leisure'}></RatingControlled>
           <RatingControlled onValueChange={this.onDimensionChange('career')} label={'Job/Career'}></RatingControlled>
-          <RatingControlled onValueChange={this.onDimensionChange('reconsilation')} label={'Reconsilation'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('reconsilation')} label={'Life/Freedom'}></RatingControlled>
           <RatingControlled onValueChange={this.onDimensionChange('health')} label={'Health'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('family')} label={'Family'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('sustain')} label={'Sustainability'}></RatingControlled>
           <Button type='submit'>Submit</Button>
         </Form>
       );
