@@ -57,8 +57,8 @@ class App extends React.Component {
             career: parseInt(i.career) || 0,
             reconsilation: parseInt(i.reconsilation) || 0,
             health: parseInt(i.health)  || 0,
-            family: parseInt(i.health)  || 0,
-            sustain: parseInt(i.health)  || 0
+            family: parseInt(i.family)  || 0,
+            sustain: parseInt(i.sustain)  || 0
           }
         }
       }
