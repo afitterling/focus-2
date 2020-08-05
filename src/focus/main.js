@@ -2,7 +2,6 @@ import React from 'react'
 import { List, Segment } from 'semantic-ui-react'
 
 export const MainList = ({items, onDelete}) => {
-    //const stopEvent = (e) => {e.stopPropagation();}
     return (
         <Segment inverted>
             <List divided inverted relaxed>

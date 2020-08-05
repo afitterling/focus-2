@@ -13,12 +13,6 @@ const dimensions = [
   {key: 'leisure', label: 'Leisure'},
   {key: 'reconsilation', label: 'Reconsilation'},
 ];
-const values = {
-  health: 4,
-  jobcareer: 6,
-  leisure: 7,
-  reconsilation: 0
-}
 
 class App extends React.Component {
 
@@ -26,16 +20,18 @@ class App extends React.Component {
     super();
     this.state = {
       items: [],
-      showNewForm: false
+      showNewForm: false,
+      values: []
     };
   }
 
-  onAdd = ({title, desc}) => {
-    const newItem = {id: uuidv4(), title: title, desc: desc};
-    console.log('add', newItem);
+  onAdd = ({title, desc, leisure, health, career, reconsilation}) => {
+    const newItem = {id: uuidv4(), title, desc, leisure, health, career};
+    console.log(newItem);
     this.setState({items: [...this.state.items, newItem]});    
     localStorage.setItem('items', JSON.stringify([...this.state.items, newItem]));
     this.setState({showNewForm: false});
+    this.setState({values: [...this.state.values, {key: newItem.id, label: '', values: {leisure, health, career, reconsilation}}]});
   }
 
   onDelete = (id) => () => {
@@ -65,7 +61,7 @@ class App extends React.Component {
           <button className="ui button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
         }        
         <Container>
-          <RadarChart variables={dimensions} values={values}></RadarChart>
+          <RadarChart variables={dimensions} values={this.state.values}></RadarChart>
         </Container>
       </div>    
     );  

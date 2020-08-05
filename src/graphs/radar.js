@@ -17,13 +17,7 @@ export const RadarChart = ({variables, values}) => (
   }}
   data={{
     variables: variables,
-    sets: [
-      {
-        key: 'me1',
-        label: 'My Scores',
-        values: values,
-      }
-    ],
+    sets: values
   }}
 />
 )

@@ -3,34 +3,36 @@ import { Button, Form } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 import { RatingControlled } from '../rating';
 
-const emptyForm = {title: '', desc: ''};
+const dimensions = {leisure: 0, career: 0, reconsilation: 0, health: 0};
+const emptyForm = {title: '', desc: '', ...dimensions};
 
 export class NewInput extends React.Component {
 
     constructor(props){
       super(props);
       this.onAdd = props.onAdd;
-      this.state = {form: {...emptyForm}};
-
+      this.state = {form: {...emptyForm, ...dimensions}};
       this.onSubmit = this.onSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
     }
 
     onSubmit = () => {
-        this.onAdd({id: uuidv4(), ...this.state.form});
-        this.setState({form: {...emptyForm}});        
+      this.onAdd({id: uuidv4(), ...this.state.form});
+      this.setState({form: {...emptyForm}});        
     }
 
     onChange = (field) => {
         return (e) => {
             const form = this.state.form;
             form[field] = e.target.value;
-            this.setState({form: form});
+            this.setState({form: {...form}});
           };    
     }
 
     onDimensionChange = (dim) => (val) => {
-      console.log(dim, val);
+      const form = {...this.state.form};
+      form[dim] = val;
+      this.setState({form: {...form}});
     }
 
     render(){
@@ -45,9 +47,9 @@ export class NewInput extends React.Component {
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
           </Form.Field>
           <RatingControlled onValueChange={this.onDimensionChange('leisure')} label={'Leisure'}></RatingControlled>
-          <RatingControlled label={'Job/Career'}></RatingControlled>
-          <RatingControlled label={'Health'}></RatingControlled>
-          <RatingControlled label={'Reconsilation'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('career')} label={'Job/Career'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('reconsilation')} label={'Health'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('health')} label={'Reconsilation'}></RatingControlled>
           <Button type='submit'>Submit</Button>
         </Form>
       );
