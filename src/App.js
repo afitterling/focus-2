@@ -7,13 +7,13 @@ import { RadarChart } from './graphs/radar';
 import { Container } from 'semantic-ui-react';
 
 const dimensions = [
-  {key: 'health', label: 'Health'},
-  {key: 'career', label: 'Job Career'},
   {key: 'leisure', label: 'Leisure'},
+  {key: 'career', label: 'Job Career'},
   {key: 'reconsilation', label: 'Life/Freedom'},
+  {key: 'health', label: 'Health'},
   {key: 'family', label: 'Family'},
   {key: 'sustain', label: 'Sustainability'}
-];
+  ];
 
 class App extends React.Component {
 
@@ -54,9 +54,11 @@ class App extends React.Component {
           label: i.title,
           values: {
             leisure: parseInt(i.leisure) || 0,
-            reconsilation: parseInt(i.reconsilation) || 0,
             career: parseInt(i.career) || 0,
-            health: parseInt(i.health)  || 0
+            reconsilation: parseInt(i.reconsilation) || 0,
+            health: parseInt(i.health)  || 0,
+            family: parseInt(i.health)  || 0,
+            sustain: parseInt(i.health)  || 0
           }
         }
       }
