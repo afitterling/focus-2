@@ -7,9 +7,9 @@ export const MainList = ({items, onDelete}) => {
         <Segment inverted>
         <List divided inverted relaxed>
             {items.map(({id, title, desc}) => (
-                <div class="item" key={id}>
-                    <div class="content">
-                        <div class="header"><button className="circular icon button ui" onClick={onDelete(id)}><i className="icon trash"></i></button>{title}</div>
+                <div className="item" key={id}>
+                    <div className="content">
+                        <div className="header"><button className="circular icon button ui" onClick={onDelete(id)}><i className="icon trash"></i></button>{title}</div>
                         {desc}                        
                     </div>
                 </div>                
