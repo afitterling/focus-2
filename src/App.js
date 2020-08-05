@@ -44,11 +44,11 @@ class App extends React.Component {
   componentDidMount(){
     const items = JSON.parse(localStorage.getItem('items')) || [];
     console.log(items);
-    const values =       items.map(
+    const values = items.map(
       (i) => {
         return {
-          key: '',
-          label: '',
+          key: i.id,
+          label: i.title,
           values: {
             leisure: parseInt(i.leisure) || 0,
             reconsilation: parseInt(i.reconsilation) || 0,
