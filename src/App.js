@@ -9,7 +9,7 @@ import { Container } from 'semantic-ui-react';
 
 const dimensions = [
   {key: 'health', label: 'Health'},
-  {key: 'career', label: 'Job Career'},
+  {key: 'jobcareer', label: 'Job Career'},
   {key: 'leisure', label: 'Leisure'},
   {key: 'reconsilation', label: 'Reconsilation'},
 ];
@@ -26,12 +26,12 @@ class App extends React.Component {
   }
 
   onAdd = ({title, desc, leisure, health, career, reconsilation}) => {
-    const newItem = {id: uuidv4(), title, desc, leisure, health, career};
+    const newItem = {id: uuidv4(), title, desc, leisure, health, career, reconsilation};
     console.log(newItem);
     this.setState({items: [...this.state.items, newItem]});    
     localStorage.setItem('items', JSON.stringify([...this.state.items, newItem]));
     this.setState({showNewForm: false});
-    this.setState({values: [...this.state.values, {key: newItem.id, label: '', values: {leisure, health, career, reconsilation}}]});
+    this.setState({values: [...this.state.values, {key: newItem.id, label: title, values: {leisure, health, career, reconsilation}}]});
   }
 
   onDelete = (id) => () => {
@@ -44,16 +44,28 @@ class App extends React.Component {
   componentDidMount(){
     const items = JSON.parse(localStorage.getItem('items')) || [];
     console.log(items);
-    // this.setState({values: items.map(
-    //   (i) => {
-    //     return {
-    //       key: i.id,
-    //       label: i.title,
-    //       values: {leisure: i.leisure, reconsilation: i.reconsilation, career: i.career, health: i.health}
-    //     }
-    //   }
-    // )});
-    this.setState({items: items});    
+    const values =       items.map(
+      (i) => {
+        return {
+          key: '',
+          label: '',
+          values: {
+            leisure: parseInt(i.leisure) || 0,
+            reconsilation: parseInt(i.reconsilation) || 0,
+            career: parseInt(i.career) || 0,
+            health: parseInt(i.health)  || 0
+          }
+        }
+      }
+    )
+;
+    console.log(
+      values
+    );
+    this.setState({
+      items: items,
+      values: values
+    });    
   }
 
 
