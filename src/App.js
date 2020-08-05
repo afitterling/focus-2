@@ -9,7 +9,7 @@ import { Container } from 'semantic-ui-react';
 
 const dimensions = [
   {key: 'health', label: 'Health'},
-  {key: 'jobcareer', label: 'Job Career'},
+  {key: 'career', label: 'Job Career'},
   {key: 'leisure', label: 'Leisure'},
   {key: 'reconsilation', label: 'Reconsilation'},
 ];
@@ -44,15 +44,15 @@ class App extends React.Component {
   componentDidMount(){
     const items = JSON.parse(localStorage.getItem('items')) || [];
     console.log(items);
-    this.setState({values: items.map(
-      (i) => {
-        return {
-          key: i.id,
-          label: '',
-          values: {leisure: i.leisure, reconsilation: i.reconsilation, career: i.career, health: i.health}
-        }
-      }
-    )});
+    // this.setState({values: items.map(
+    //   (i) => {
+    //     return {
+    //       key: i.id,
+    //       label: i.title,
+    //       values: {leisure: i.leisure, reconsilation: i.reconsilation, career: i.career, health: i.health}
+    //     }
+    //   }
+    // )});
     this.setState({items: items});    
   }
 

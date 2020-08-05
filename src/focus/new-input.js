@@ -38,7 +38,7 @@ export class NewInput extends React.Component {
 
     render(){
       return (
-        <Form onSubmit={this.onSubmit}>
+        <Form onSubmit={this.onSubmit} style={{padding: '0 50px 0 50px'}}>
           <Form.Field>
             <label>Title</label>
             <input placeholder='name' value={this.state.form.title} onChange={this.onChange('title')} />
@@ -49,8 +49,8 @@ export class NewInput extends React.Component {
           </Form.Field>
           <RatingControlled onValueChange={this.onDimensionChange('leisure')} label={'Leisure'}></RatingControlled>
           <RatingControlled onValueChange={this.onDimensionChange('career')} label={'Job/Career'}></RatingControlled>
-          <RatingControlled onValueChange={this.onDimensionChange('reconsilation')} label={'Health'}></RatingControlled>
-          <RatingControlled onValueChange={this.onDimensionChange('health')} label={'Reconsilation'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('reconsilation')} label={'Reconsilation'}></RatingControlled>
+          <RatingControlled onValueChange={this.onDimensionChange('health')} label={'Health'}></RatingControlled>
           <Button type='submit'>Submit</Button>
         </Form>
       );
