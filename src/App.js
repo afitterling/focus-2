@@ -5,6 +5,7 @@ import {NewInput} from './focus/new-input';
 import { v4 as uuidv4 } from 'uuid';
 //import Repository from './services/repository';
 import { RadarChart } from './graphs/radar';
+import { Container } from 'semantic-ui-react';
 
 const dimensions = [
   {key: 'health', label: 'Health'},
@@ -63,7 +64,9 @@ class App extends React.Component {
           this.state.showNewForm ? <NewInput onAdd={this.onAdd}></NewInput> : 
           <button className="ui button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
         }        
-        <RadarChart variables={dimensions} values={values}></RadarChart>
+        <Container>
+          <RadarChart variables={dimensions} values={values}></RadarChart>
+        </Container>
       </div>    
     );  
   }
