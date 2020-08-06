@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
-import {MainList} from './focus/main';
-import {NewInput} from './focus/new-input';
+import {ItemsList} from './items/list';
+import {NewInput} from './items/forms/new';
 import { v4 as uuidv4 } from 'uuid';
-import { RadarChart } from './graphs/radar';
-import { Container } from 'semantic-ui-react';
 
-const dimensions = [
+/* const dimensions = [
   {key: 'career', label: 'Job Career'},
   {key: 'reconsilation', label: 'Life/Freedom'},
   {key: 'leisure', label: 'Leisure'},
@@ -14,7 +12,7 @@ const dimensions = [
   {key: 'family', label: 'Family'},
   {key: 'sustain', label: 'Sustainability'}
   ];
-
+ */
 class App extends React.Component {
 
   constructor () {
@@ -81,14 +79,13 @@ class App extends React.Component {
   render () {
     return (
       <div className="ui">
-        <MainList onDelete={this.onDelete} items={this.state.items}></MainList>
+        <ItemsList onDelete={this.onDelete} items={this.state.items}></ItemsList>
         { 
           this.state.showNewForm ? <NewInput onAdd={this.onAdd}></NewInput> : 
-          <button className="ui circular button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
+          <div class="ui" style={{padding: '5px'}}>
+            <button className="ui circular button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
+          </div>
         }        
-        <Container>
-          <RadarChart variables={dimensions} values={this.state.values}></RadarChart>
-        </Container>
       </div>    
     );  
   }
