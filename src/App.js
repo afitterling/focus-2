@@ -82,7 +82,7 @@ class App extends React.Component {
         <ItemsList onDelete={this.onDelete} items={this.state.items}></ItemsList>
         { 
           this.state.showNewForm ? <NewInput onAdd={this.onAdd}></NewInput> : 
-          <div class="ui" style={{padding: '5px'}}>
+          <div className="ui" style={{padding: '5px'}}>
             <button className="ui circular button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
           </div>
         }        
