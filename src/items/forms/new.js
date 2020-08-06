@@ -9,15 +9,16 @@ export class NewInput extends React.Component {
 
     constructor(props){
       super(props);
-      this.onAdd = props.onAdd;
       this.state = {form: {...emptyForm, ...dimensions}};
       this.onSubmit = this.onSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
+      //this.onAddItem = props.onAddItem.bind(this);
+      this.onCancel = props.onCancel;
     }
 
     onSubmit = () => {
       const newItem = {id: uuidv4(), ...this.state.form};
-      this.onAdd(newItem);
+      this.props.onAddItem(newItem);
       this.setState({form: {...emptyForm}});        
     }
 
@@ -47,6 +48,7 @@ export class NewInput extends React.Component {
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
           </Form.Field>
           <Button type='submit'>Submit</Button>
+          <Button onClick={this.onCancel}>Cancel</Button>
         </Form>
       );
     }

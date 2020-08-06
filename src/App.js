@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import {ItemsList} from './items/list';
-import {NewInput} from './items/forms/new';
 import { v4 as uuidv4 } from 'uuid';
-
+import { Items } from './pages/items';
 /* const dimensions = [
   {key: 'career', label: 'Job Career'},
   {key: 'reconsilation', label: 'Life/Freedom'},
@@ -35,7 +33,7 @@ class App extends React.Component {
     this.setState({values: [...this.state.values, {key: newItem.id, label: title, values: {...formParamsDimensions}}]});
   }
 
-  onDelete = (id) => () => {
+  onDeleteItem = (id) => () => {
     console.log('onDelete', id);
     const items = this.state.items.filter( i => i.id !== id);
     this.setState({items: items});
@@ -78,15 +76,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="ui">
-        <ItemsList onDelete={this.onDelete} items={this.state.items}></ItemsList>
-        { 
-          this.state.showNewForm ? <NewInput onAdd={this.onAdd}></NewInput> : 
-          <div className="ui" style={{padding: '5px'}}>
-            <button className="ui circular button icon" onClick={this.toggleNew}><i className="circle icon plus"></i></button>
-          </div>
-        }        
-      </div>    
+      <Items onItemDelete={this.onDeleteItem} onItemAdd={this.onAdd} items={this.state.items}></Items>
     );  
   }
 }
