@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 
-const dimensions = {leisure: 0, career: 0, reconsilation: 0, health: 0, family: 0, sustain: 0};
-const emptyForm = {title: '', desc: '', ...dimensions};
+//const dimensions = {leisure: 0, career: 0, reconsilation: 0, health: 0, family: 0, sustain: 0};
+//const emptyForm = {title: '', desc: '', ...dimensions};
 
-export class NewInput extends React.Component {
+export class EditItemForm extends React.Component {
 
     constructor(props){
       super(props);
-      this.state = {form: {...emptyForm, ...dimensions}};
+      this.state = {form: {...this.props.item}};
       this.onSubmit = this.onSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
       //this.onAddItem = props.onAddItem.bind(this);
@@ -17,10 +17,16 @@ export class NewInput extends React.Component {
     }
 
     onSubmit = () => {
-      const newItem = {id: uuidv4(), ...this.state.form};
-      this.props.onAddItem(newItem);
-      this.setState({form: {...emptyForm}});        
+      const updateItem = {...this.state.form};
+      this.props.onUpdateItem(updateItem);
+      //this.setState({form: {...emptyForm}});        
     }
+
+    componentDidUpdate({item}){
+      if (item !== this.props.item){
+        this.setState({form: {...this.props.item}});
+      }
+          }
 
     onChange = (field) => {
         return (e) => {

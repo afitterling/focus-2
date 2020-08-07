@@ -1,19 +1,19 @@
 import React from 'react'
 import { Table, Header } from 'semantic-ui-react'
 
-export const ItemsList = ({ items, onDelete }) => {
+export const ItemsList = ({ items, onDelete, onCellClick }) => {
     return (
         <Table unstackable>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Items</Table.HeaderCell>
-                    <Table.HeaderCell>Actions</Table.HeaderCell>
+                    <Table.HeaderCell>Title</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
                 {items.map(({title, id, desc}) => (
                     <Table.Row key={id}>
-                        <Table.Cell>
+                        <Table.Cell onClick={onCellClick(id)}>
                             <Header as='h4' image>                                
                                 <Header.Content>
                                     {title}

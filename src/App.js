@@ -33,6 +33,21 @@ class App extends React.Component {
     this.setState({values: [...this.state.values, {key: newItem.id, label: title, values: {...formParamsDimensions}}]});
   }
 
+  onUpdate = (formParams) => {
+    const updatedItems = [...this.state.items.map(
+      i => {
+        if (i.id === formParams.id) {
+          return {...formParams};
+        } else {
+          return i;
+        }        
+      }
+    )];
+    this.setState({items: updatedItems});
+    localStorage.setItem('items', JSON.stringify([...updatedItems]));
+    return true;
+  }
+
   onDeleteItem = (id) => () => {
     console.log('onDelete', id);
     const items = this.state.items.filter( i => i.id !== id);
@@ -76,7 +91,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <Items onItemDelete={this.onDeleteItem} onItemAdd={this.onAdd} items={this.state.items}></Items>
+      <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
     );  
   }
 }
