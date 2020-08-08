@@ -62,6 +62,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <MenuExampleStackable></MenuExampleStackable>
+        <div className="ui message info">Warning. Persistency happens only in this particular browser window! API under construction.</div>
         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
       </React.Fragment>
     );  
