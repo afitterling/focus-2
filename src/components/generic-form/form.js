@@ -47,8 +47,8 @@ export class ItemForm extends React.Component {
             <label>Description</label>
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
           </Form.Field>
-          <Button type='submit'>Save</Button>
-          <Button onClick={this.props.onCancel}>Cancel</Button>
+          <Button type="submit">Save</Button>
+          <Button type="button" onClick={this.props.onCancel}>Cancel</Button>
         </Form>
       );
     }
