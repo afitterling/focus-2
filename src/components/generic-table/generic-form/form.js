@@ -11,10 +11,15 @@ export class ItemForm extends React.Component {
       this.state = this.props.item ? {form: {...this.props.item}} : {form: {...emptyForm}};
     }
 
-    onSubmit = () => {
-      const newItem = {id: uuidv4(), ...this.state.form};
-      this.props.onAddItem(newItem);
-      this.setState({form: {...emptyForm}});        
+    onSave = () => {
+      if (this.props.onAddItem) {
+        const newItem = {id: uuidv4(), ...this.state.form};
+        this.props.onAddItem(newItem);
+      }
+      if (this.props.onUpdateItem) {
+        const updateItem = {...this.state.form};
+        this.props.onUpdateItem(updateItem);
+        }
     }
 
     onChange = (field) => {
@@ -25,9 +30,15 @@ export class ItemForm extends React.Component {
           };    
     }
 
+    componentDidUpdate({item}){
+      if (item !== this.props.item){
+        this.setState({form: {...this.props.item}});
+      }
+    }
+
     render(){
       return (
-        <Form onSubmit={this.onSubmit} style={{padding: '0 5px 0 5px'}}>
+        <Form onSubmit={this.onSave} style={{padding: '0 5px 0 5px'}}>
           <Form.Field>
             <label>Title</label>
             <input placeholder='name' value={this.state.form.title} onChange={this.onChange('title')} />
