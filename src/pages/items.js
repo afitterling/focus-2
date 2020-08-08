@@ -1,6 +1,6 @@
 import React from 'react';
-import {ItemsList} from '../items/list';
-import {ItemForm} from '../components/generic-table/generic-form/form';
+import {ItemsList} from '../components/items/list';
+import {ItemForm} from '../components/generic-form/form';
 
 export class Items extends React.Component {
     
