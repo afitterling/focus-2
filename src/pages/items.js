@@ -1,6 +1,6 @@
 import React from 'react';
 import {ItemsList} from '../items/list';
-import {NewInput} from '../components/generic-table/generic-form/new';
+import {NewItemForm} from '../components/generic-table/generic-form/new';
 import {EditItemForm} from '../components/generic-table/generic-form/edit';
 
 export class Items extends React.Component {
@@ -41,7 +41,7 @@ export class Items extends React.Component {
             <div className="ui">
                 <ItemsList onCellClick={this.onCellClick} onDelete={this.props.onItemDelete} items={this.props.items}></ItemsList>                
                 { 
-                    this.state.showNewForm ? <NewInput onAddItem={this.onItemAdd} onSubmit={this.onItemAdd} onCancel={this.onCancel}></NewInput> : null
+                    this.state.showNewForm ? <NewItemForm onAddItem={this.onItemAdd} onSubmit={this.onItemAdd} onCancel={this.onCancel}></NewItemForm> : null
                 }
 
                 {

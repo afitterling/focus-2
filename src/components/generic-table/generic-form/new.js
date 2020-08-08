@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 const dimensions = {leisure: 0, career: 0, reconsilation: 0, health: 0, family: 0, sustain: 0};
 const emptyForm = {title: '', desc: '', ...dimensions};
 
-export class NewInput extends React.Component {
+export class NewItemForm extends React.Component {
 
     constructor(props){
       super(props);
