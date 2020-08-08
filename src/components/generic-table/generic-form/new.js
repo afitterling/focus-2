@@ -10,10 +10,6 @@ export class NewInput extends React.Component {
     constructor(props){
       super(props);
       this.state = {form: {...emptyForm, ...dimensions}};
-      this.onSubmit = this.onSubmit.bind(this);
-      this.onChange = this.onChange.bind(this);
-      //this.onAddItem = props.onAddItem.bind(this);
-      this.onCancel = props.onCancel;
     }
 
     onSubmit = () => {
@@ -32,7 +28,7 @@ export class NewInput extends React.Component {
 
     render(){
       return (
-        <Form onSubmit={this.onSubmit} style={{padding: '0 50px 0 50px'}}>
+        <Form onSubmit={this.onSubmit} style={{padding: '0 5px 0 5px'}}>
           <Form.Field>
             <label>Title</label>
             <input placeholder='name' value={this.state.form.title} onChange={this.onChange('title')} />
@@ -41,8 +37,8 @@ export class NewInput extends React.Component {
             <label>Description</label>
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
           </Form.Field>
-          <Button type='submit'>Submit</Button>
-          <Button onClick={this.onCancel}>Cancel</Button>
+          <Button type='submit'>Save</Button>
+          <Button onClick={this.props.onCancel}>Cancel</Button>
         </Form>
       );
     }
