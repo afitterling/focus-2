@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 
-const emptyForm = {title: '', desc: '', ...dimensions};
+const emptyForm = {title: '', desc: ''};
 
 export class ItemForm extends React.Component {
 
     constructor(props){
       super(props);
-      this.state = {form: {}}; // TODO
+      this.state = this.props.item ? {form: {...this.props.item}} : {form: {...emptyForm}};
     }
 
     onSubmit = () => {
