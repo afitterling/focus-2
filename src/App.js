@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
+import MenuExampleStackable from './components/nav';
 
 class App extends React.Component {
 
@@ -59,7 +60,10 @@ class App extends React.Component {
 
   render () {
     return (
-      <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+      <React.Fragment>
+        <MenuExampleStackable></MenuExampleStackable>
+        <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+      </React.Fragment>
     );  
   }
 }
