@@ -26,6 +26,12 @@ export class NewItemForm extends React.Component {
           };    
     }
 
+    componentDidUpdate({item}){
+      if (item !== this.props.item){
+        this.setState({form: {...this.props.item}});
+      }
+    }
+
     render(){
       return (
         <Form onSubmit={this.onSubmit} style={{padding: '0 5px 0 5px'}}>

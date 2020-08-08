@@ -11,14 +11,13 @@ export class EditItemForm extends React.Component {
     onSubmit = () => {
       const updateItem = {...this.state.form};
       this.props.onUpdateItem(updateItem);
-      //this.setState({form: {...emptyForm}});        
     }
 
     componentDidUpdate({item}){
       if (item !== this.props.item){
         this.setState({form: {...this.props.item}});
       }
-          }
+    }
 
     onChange = (field) => {
         return (e) => {
