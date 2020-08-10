@@ -19,7 +19,7 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
                         <Table.Cell onClick={onCellClick(item.id)}>
                             <Header as='h4' image>                                
                                 <Header.Content>
-                                    {item[displayName[0]]} {item.focus ? <div class="ui blue horizontal label">Focus</div> : null}
+                                    {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}
                                     <Header.Subheader>
                                         {item[displayName[1]]}<br/>
                                         <em>{item[displayName[2]]}</em>
@@ -34,7 +34,7 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
                         <Table.Cell onClick={onCellClick(item.id)}>
                             <Header as='h4' image>                                
                                 <Header.Content>
-                                    {item[displayName[0]]} {item.focus ? <div class="ui blue horizontal label">Focus</div> : null}
+                                    {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}
                                     <Header.Subheader>
                                         {item[displayName[1]]}<br/>
                                         <em>{item[displayName[2]]}</em>
