@@ -16,8 +16,11 @@ export const GenericTable = ({ items, title, onDelete, displayName, onCellClick,
                         <Table.Cell onClick={onCellClick(item.id)}>
                             <Header as='h4' image>                                
                                 <Header.Content>
-                                    {item[displayName[0]]}
-                                    <Header.Subheader>{item[displayName[1]]}</Header.Subheader>
+                                    {item[displayName[0]]} 
+                                    <Header.Subheader>
+                                        {item[displayName[1]]}<br/>
+                                        <em>{item[displayName[2]]}</em>
+                                    </Header.Subheader>
                                 </Header.Content>
                             </Header>
                         </Table.Cell>

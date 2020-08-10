@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
+import { debounce } from 'lodash';
+import moment from 'moment';
 
 const emptyForm = {title: '', desc: '', date: ''};
 
@@ -22,6 +24,20 @@ export class ItemForm extends React.Component {
         }
     }
 
+    findAValidPattern = (value) => {
+      if (moment(value, "ddd").isValid()) return moment(value, "ddd");
+      if (moment(value, "D.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "DD.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "D.M.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "DD.M.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+    }
+
+    onDateProcess = debounce((value) => {
+      if (!value) return;
+      const date = this.findAValidPattern(value);
+      if (date.isValid()) this.setState({form: {...this.state.form, date: date.format('ddd, DD.MM.YYYY')}});
+    }, 2500);
+
     onChange = (field) => {
         return (e) => {
             const form = this.state.form;
@@ -34,6 +50,7 @@ export class ItemForm extends React.Component {
       const form = this.state.form;
       form['date'] = e.target.value;
       this.setState({form: {...form}});
+      this.onDateProcess(e.target.value);
     }
 
     componentDidUpdate({item}){

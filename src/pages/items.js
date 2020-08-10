@@ -39,11 +39,18 @@ export class Items extends React.Component {
     render() {
         return (
             <div className="ui">
-                <GenericTable title={['Title', '']}
+                <GenericTable title={['Scheduled', '']}
+                    displayName={['title', 'desc', 'date']}
+                    onCellClick={this.onCellClick}
+                    onDelete={this.props.onItemDelete}
+                    items={this.props.items.filter(i => !!i.date)}>
+                </GenericTable>
+
+                <GenericTable title={['Pending', '']}
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    items={this.props.items}>
+                    items={this.props.items.filter(i => !i.date)}>
                 </GenericTable>
                 {
                     this.state.showNewForm ?
