@@ -88,7 +88,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    sorterFns={[this.ascSorter('dateRaw')]}
+                    sorterFns={[this.ascSorter('dateRaw'), this.sorterNumericDesc('progress')]}
                     items={this.onFocusFilterDate(this.props.items.filter(i => {
                         return !!i.date;
                     }))}>

@@ -127,15 +127,6 @@ export class ItemForm extends React.Component {
             </div>
           </Form.Field>
           <Form.Field>
-            <label>Scheduled</label>
-            <div className="ui action input">
-              <input type="text" placeholder='human readable date' value={this.state.form.date} onChange={this.onDateChange} />
-              <button type="button" onClick={this.onResetDate} className="ui icon button">
-                <i className="delete icon"></i>
-              </button>
-            </div>
-          </Form.Field>
-          <Form.Field>
             <div className="ui checkbox">
               <input type="checkbox" checked={this.state.form.focus} onChange={this.onFocusChange} name={'focus'} />
               <label>Focus</label>
