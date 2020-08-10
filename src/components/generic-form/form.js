@@ -26,14 +26,19 @@ export class ItemForm extends React.Component {
 
     findAValidPattern = (value) => {
       if (moment(value, "ddd").isValid()) return moment(value, "ddd");
+
       if (moment(value, "D.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+
       if (moment(value, "D.M.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.M.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
-      if (moment(value, "DD.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+
       if (moment(value, "D.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.MM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+
+      if (moment(value, "D. MMM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "DD. MMM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
     }
 
     onDateProcess = debounce((value) => {
