@@ -4,13 +4,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { debounce } from 'lodash';
 import moment from 'moment';
 
-const emptyForm = {title: '', desc: '', date: ''};
+const emptyForm = {title: '', desc: '', date: '', focus: false};
 
 export class ItemForm extends React.Component {
 
     constructor(props){
       super(props);
       this.state = this.props.item ? {form: {...this.props.item}} : {form: {...emptyForm}};
+      console.log(this.state);
     }
 
     onSave = () => {
@@ -53,6 +54,12 @@ export class ItemForm extends React.Component {
             form[field] = e.target.value;
             this.setState({form: {...form}});
           };    
+    }
+
+    onFocusChange = (e) => {
+      const form = this.state.form;
+      form['focus'] = !this.state.form.focus;
+      this.setState({form: {...form}});
     }
 
     onDateChange = (e) => {
@@ -111,6 +118,12 @@ export class ItemForm extends React.Component {
               <button type="button" onClick={this.onResetDate} className="ui icon button">
                 <i className="delete icon"></i>
               </button>
+            </div>
+          </Form.Field>
+          <Form.Field>
+            <div className="ui checkbox">
+              <input type="checkbox" checked={this.state.form.focus} onChange={this.onFocusChange} name={'focus'} />
+              <label>Focus</label>
             </div>
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>

@@ -17,6 +17,7 @@ class App extends React.Component {
 
   onAdd = (formParams) => {
     const newItem = {id: uuidv4(), ...formParams};
+    console.log(newItem);
     this.setState({items: [...this.state.items, newItem]});    
     localStorage.setItem('items', JSON.stringify([...this.state.items, newItem]));
     this.setState({showNewForm: false});

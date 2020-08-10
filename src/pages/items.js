@@ -50,7 +50,12 @@ export class Items extends React.Component {
     render() {
         return (
             <div className="ui">
-                <GenericTable title={['Scheduled', '']}
+{/*                 <div class="ui large buttons">
+                    <button class="ui button">All</button>
+                    <div class="or"></div>
+                    <button class="ui button">Focus</button>
+                </div>
+ */}                 <GenericTable title={['Scheduled', '']}
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
