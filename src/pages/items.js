@@ -2,6 +2,7 @@ import React from 'react';
 import { GenericTable } from '../components/generic-table/table';
 import { ItemForm } from '../components/generic-form/form';
 import ModalBasic from '../components/modal';
+//import moment from 'moment';
 
 export class Items extends React.Component {
 
@@ -43,7 +44,9 @@ export class Items extends React.Component {
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    items={this.props.items.filter(i => !!i.date)}>
+                    items={this.props.items.filter(i => {
+                        return i.date;
+                    })}>
                 </GenericTable>
 
                 <GenericTable title={['Pending', '']}

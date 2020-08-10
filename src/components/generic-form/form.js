@@ -80,8 +80,8 @@ export class ItemForm extends React.Component {
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
           </Form.Field>
           <Form.Field>
-            <label>Scheduled?</label>
-            <input type="text" placeholder='humanly reading date' value={this.state.form.date} onChange={this.onDateChange} />
+            <label>Scheduled</label>
+            <input type="text" placeholder='human readable string' value={this.state.form.date} onChange={this.onDateChange} />
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
