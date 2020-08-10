@@ -12,7 +12,7 @@ export default class MenuExampleStackable extends Component {
     return (
       <Menu stackable>
         <Menu.Item>
-          <img alt="" src='https://react.semantic-ui.com/logo.png' />
+          <img alt="" src='https://react.semantic-ui.com/logo.png' /> <b>Focus-2</b>
         </Menu.Item>
 
         <Menu.Item
@@ -20,7 +20,7 @@ export default class MenuExampleStackable extends Component {
           active={activeItem === 'items'}
           onClick={this.handleItemClick}
         >
-          Items
+          Overview
         </Menu.Item>
 
       </Menu>
