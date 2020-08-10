@@ -30,13 +30,17 @@ export class ItemForm extends React.Component {
       if (moment(value, "DD.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "D.M.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.M.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "DD.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "D.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "DD.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "DD.MM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
     }
 
     onDateProcess = debounce((value) => {
       if (!value) return;
       const date = this.findAValidPattern(value);
       if (date.isValid()) this.setState({form: {...this.state.form, date: date.format('ddd, DD.MM.YYYY')}});
-    }, 2500);
+    }, 1500);
 
     onChange = (field) => {
         return (e) => {
