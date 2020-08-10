@@ -26,8 +26,6 @@ export class ItemForm extends React.Component {
     }
 
     findAValidPattern = (value) => {
-      if (moment(value, "ddd").isValid()) return moment(value, "ddd");
-
       if (moment(value, "D.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
 
@@ -38,15 +36,16 @@ export class ItemForm extends React.Component {
       if (moment(value, "DD.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.MM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
 
-      if (moment(value, "D. MMM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
-      if (moment(value, "DD. MMM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "ddd").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      return moment(value, "ddd, DD.MM.YYYY");
     }
 
     onDateProcess = debounce((value) => {
-      if (!value || '') return;
+      if (!value) return;
+      
       const date = this.findAValidPattern(value);
       if (date.isValid()) this.setState({form: {...this.state.form, date: date.format('ddd, DD.MM.YYYY'), dateRaw: moment(date, 'ddd DD.MM.YYYY').format()}});
-    }, 1500);
+    }, 2500);
 
     onChange = (field) => {
         return (e) => {
