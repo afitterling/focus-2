@@ -5,7 +5,7 @@ import { debounce } from 'lodash';
 import moment from 'moment';
 import RatingExampleControlled from '../../components/rating';
 
-const emptyForm = {title: '', desc: '', date: '', focus: false};
+const emptyForm = {title: '', desc: '', date: '', focus: false, progress: 0};
 
 export class ItemForm extends React.Component {
 

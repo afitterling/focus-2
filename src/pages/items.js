@@ -37,8 +37,16 @@ export class Items extends React.Component {
         this.setState({ showEditForm: !ok, activeItem: null });
     }
 
-    // -> 
-    sorter = (sortBy) => {
+    sorterNumericDesc = (sortBy) => {
+        return (a,b) => {
+            const compA = parseInt(a[sortBy]);
+            const compB = parseInt(b[sortBy]);
+            if (compA > compB) return -1;
+            if (compA < compB) return 1;
+        }
+    }
+
+    ascSorter = (sortBy) => {
         return (a,b) => {
             const compA = a[sortBy];
             const compB = b[sortBy];
@@ -80,7 +88,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    sorterFns={[this.sorter('dateRaw')]}
+                    sorterFns={[this.ascSorter('dateRaw'), this.sorterNumericDesc('progress')]}
                     items={this.onFocusFilterDate(this.props.items.filter(i => {
                         return !!i.date;
                     }))}>
@@ -89,6 +97,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
+                    sorterFns={[this.sorterNumericDesc('progress')]}
                     items={this.onFocusModeFilter(this.props.items.filter(i => !i.dateRaw))}>
                 </GenericTable>
                 {
