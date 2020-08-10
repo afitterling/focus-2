@@ -1,10 +1,10 @@
 import React from 'react';
-import {ItemsList} from '../components/items/list';
+import {GenericTable} from '../components/generic-table/table';
 import {ItemForm} from '../components/generic-form/form';
 
 export class Items extends React.Component {
     
-    constructor(props){
+    constructor(){
         super();
         this.state = {showNewForm: false};
         this.onNewItem = this.onNewItem.bind(this);
@@ -38,7 +38,12 @@ export class Items extends React.Component {
     render(){
         return (
             <div className="ui">
-                <ItemsList onCellClick={this.onCellClick} onDelete={this.props.onItemDelete} items={this.props.items}></ItemsList>                
+                <GenericTable title={['Title', '']}
+                      displayName={['title', 'desc']}
+                      onCellClick={this.onCellClick}
+                      onDelete={this.props.onItemDelete}
+                      items={this.props.items}>
+                </GenericTable>
                 { 
                     this.state.showNewForm ? <ItemForm onAddItem={this.onItemAdd} onSubmit={this.onItemAdd} onCancel={this.onCancel}></ItemForm> : null
                 }
