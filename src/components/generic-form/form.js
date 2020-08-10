@@ -49,11 +49,11 @@ export class ItemForm extends React.Component {
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
-          content="save"
-          labelPosition='right'
-          icon='checkmark'
-          positive
-        />
+            content="save"
+            labelPosition='right'
+            icon='checkmark'
+            positive
+          />
         </Form>
       );
     }
