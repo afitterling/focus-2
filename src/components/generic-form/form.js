@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 
-const emptyForm = {title: '', desc: ''};
+const emptyForm = {title: '', desc: '', date: ''};
 
 export class ItemForm extends React.Component {
 
@@ -30,6 +30,12 @@ export class ItemForm extends React.Component {
           };    
     }
 
+    onDateChange = (e) => {
+      const form = this.state.form;
+      form['date'] = e.target.value;
+      this.setState({form: {...form}});
+    }
+
     componentDidUpdate({item}){
       if (item !== this.props.item){
         this.setState({form: {...this.props.item}});
@@ -46,6 +52,10 @@ export class ItemForm extends React.Component {
           <Form.Field disabled={!this.state.form.title}>
             <label>Description</label>
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
+          </Form.Field>
+          <Form.Field>
+            <label>Scheduled?</label>
+            <input type="text" placeholder='humanly reading date' value={this.state.form.date} onChange={this.onDateChange} />
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
