@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Header } from 'semantic-ui-react';
 
-export const GenericTable = ({ items, title, onDelete, displayName, onCellClick }) => {
+export const GenericTable = ({ items, title, onDelete, displayName, onCellClick, children }) => {
     return (
         <Table unstackable>
             <Table.Header>
