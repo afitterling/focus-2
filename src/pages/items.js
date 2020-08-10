@@ -2,6 +2,7 @@ import React from 'react';
 import { GenericTable } from '../components/generic-table/table';
 import { ItemForm } from '../components/generic-form/form';
 import ModalBasic from '../components/modal';
+import moment from 'moment';
 
 export class Items extends React.Component {
 
@@ -47,29 +48,48 @@ export class Items extends React.Component {
         }
     }
         
+    onModeChange({focus}){
+        return () => {
+            this.setState({focusActive: focus});
+        }
+    }
+
+    onFocusModeFilter(items){
+        if (this.state.focusActive){
+            return items.filter(i => i.focus);
+        }
+        return items;
+    }
+
+    onFocusFilterDate(items){
+        if (this.state.focusActive){
+            return items.filter(i => moment().diff(moment(i.dateRaw), 'days') === 0 || i.focus);
+        }
+        return items;
+    }
+
     render() {
         return (
             <div className="ui">
-{/*                 <div class="ui large buttons">
-                    <button class="ui button">All</button>
+                <div class="ui large buttons">
+                    <button class="ui button" onClick={this.onModeChange({focus: false})}>All</button>
                     <div class="or"></div>
-                    <button class="ui button">Focus</button>
+                    <button class="ui button" onClick={this.onModeChange({focus: true})}>Focus</button>
                 </div>
- */}                 <GenericTable title={['Scheduled', '']}
+                <GenericTable title={['Scheduled', '']}
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.sorter('dateRaw')]}
-                    items={this.props.items.filter(i => {
+                    items={this.onFocusFilterDate(this.props.items.filter(i => {
                         return !!i.date;
-                    })}>
+                    }))}>
                 </GenericTable>
-
                 <GenericTable title={['Pending', '']}
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    items={this.props.items.filter(i => !i.dateRaw)}>
+                    items={this.onFocusModeFilter(this.props.items.filter(i => !i.dateRaw))}>
                 </GenericTable>
                 {
                     this.state.showNewForm ?
