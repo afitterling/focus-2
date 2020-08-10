@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Header } from 'semantic-ui-react';
+import { Table, Header, Progress } from 'semantic-ui-react';
 
 export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, onCellClick }) => {
 
@@ -17,9 +17,10 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
                 {sorterFns ? sorterFns.map( sortFn => sortedItems = [...sortedItems].sort(sortFn).map((item) => (
                     <Table.Row key={item.id}>
                         <Table.Cell onClick={onCellClick(item.id)}>
-                            <Header as='h4' image>                                
-                                <Header.Content>
-                                    {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}
+                            <Header as='h4' image style={{width: '100%'}}>                                
+                                <Header.Content style={{width: '100%'}}>
+                                    {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}<br/>
+                                    {item.progress > 0 ? <Progress style={{width: '100%'}} percent={item.progress/12*100} size='tiny'></Progress> : null}
                                     <Header.Subheader>
                                         {item[displayName[1]]}<br/>
                                         <em>{item[displayName[2]]}</em>
@@ -32,9 +33,10 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
                 ))) : items.map((item) => (
                     <Table.Row key={item.id}>
                         <Table.Cell onClick={onCellClick(item.id)}>
-                            <Header as='h4' image>                                
-                                <Header.Content>
-                                    {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}
+                            <Header as='h4' image style={{width: '100%'}}>                                
+                                <Header.Content style={{width: '100%'}}>
+                                    {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}<br/>
+                                    {item.progress > 0 ? <Progress style={{width: '100%'}} percent={item.progress/12*100} size='tiny'></Progress> : null}
                                     <Header.Subheader>
                                         {item[displayName[1]]}<br/>
                                         <em>{item[displayName[2]]}</em>

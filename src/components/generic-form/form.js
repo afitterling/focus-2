@@ -3,6 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 import { debounce } from 'lodash';
 import moment from 'moment';
+import RatingExampleControlled from '../../components/rating';
 
 const emptyForm = {title: '', desc: '', date: '', focus: false};
 
@@ -89,6 +90,12 @@ export class ItemForm extends React.Component {
       };
     }
 
+    onProgressChange = (value) => {
+      const form = this.state.form;
+      form['progress'] = value;
+      this.setState({form: {...form}}); 
+    }
+
     render(){
       return (
         <Form onSubmit={this.onSave} style={{padding: '0 5px 0 5px'}}>
@@ -120,10 +127,22 @@ export class ItemForm extends React.Component {
             </div>
           </Form.Field>
           <Form.Field>
+            <label>Scheduled</label>
+            <div className="ui action input">
+              <input type="text" placeholder='human readable date' value={this.state.form.date} onChange={this.onDateChange} />
+              <button type="button" onClick={this.onResetDate} className="ui icon button">
+                <i className="delete icon"></i>
+              </button>
+            </div>
+          </Form.Field>
+          <Form.Field>
             <div className="ui checkbox">
               <input type="checkbox" checked={this.state.form.focus} onChange={this.onFocusChange} name={'focus'} />
               <label>Focus</label>
             </div>
+          </Form.Field>
+          <Form.Field>
+            <RatingExampleControlled value={this.state.form.progress} onChange={this.onProgressChange} name={'Progress'}></RatingExampleControlled>
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
