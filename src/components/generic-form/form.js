@@ -42,7 +42,7 @@ export class ItemForm extends React.Component {
     }
 
     onDateProcess = debounce((value) => {
-      if (!value) return;
+      if (!value || '') return;
       const date = this.findAValidPattern(value);
       if (date.isValid()) this.setState({form: {...this.state.form, date: date.format('ddd, DD.MM.YYYY'), dateRaw: moment(date, 'ddd DD.MM.YYYY').format()}});
     }, 1500);
@@ -62,10 +62,25 @@ export class ItemForm extends React.Component {
       this.onDateProcess(e.target.value);
     }
 
+    onResetDate = (e) => {
+      const form = this.state.form;
+      form['date'] = '';
+      form['dateRaw'] = null;
+      this.setState({form: {...form}});
+    }
+
     componentDidUpdate({item}){
       if (item !== this.props.item){
         this.setState({form: {...this.props.item}});
       }
+    }
+
+    onResetInput(field){
+      return () => { 
+        const form = this.state.form;
+        form[field] = '';
+        this.setState({form: {...form}});
+      };
     }
 
     render(){
@@ -73,15 +88,30 @@ export class ItemForm extends React.Component {
         <Form onSubmit={this.onSave} style={{padding: '0 5px 0 5px'}}>
           <Form.Field>
             <label>Title</label>
-            <input placeholder='name' value={this.state.form.title} onChange={this.onChange('title')} />
+            <div className="ui action input">
+              <input placeholder='name' value={this.state.form.title} onChange={this.onChange('title')} />
+              <button type="button" onClick={this.onResetInput('title')} className="ui icon button">
+                <i className="delete icon"></i>
+              </button>
+            </div>
           </Form.Field>
           <Form.Field disabled={!this.state.form.title}>
             <label>Description</label>
-            <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
+            <div className="ui action input">
+              <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
+              <button type="button" onClick={this.onResetInput('desc')} className="ui icon button">
+                <i className="delete icon"></i>
+              </button>
+            </div>
           </Form.Field>
           <Form.Field>
             <label>Scheduled</label>
-            <input type="text" placeholder='human readable date' value={this.state.form.date} onChange={this.onDateChange} />
+            <div className="ui action input">
+              <input type="text" placeholder='human readable date' value={this.state.form.date} onChange={this.onDateChange} />
+              <button type="button" onClick={this.onResetDate} className="ui icon button">
+                <i className="delete icon"></i>
+              </button>
+            </div>
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
