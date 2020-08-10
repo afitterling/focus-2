@@ -54,7 +54,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    sorterFn={this.sorter('dateRaw')}
+                    sorterFns={[this.sorter('dateRaw')]}
                     items={this.props.items.filter(i => {
                         return !!i.date;
                     })}>
