@@ -2,7 +2,6 @@ import React from 'react';
 import { GenericTable } from '../components/generic-table/table';
 import { ItemForm } from '../components/generic-form/form';
 import ModalBasic from '../components/modal';
-//import moment from 'moment';
 
 export class Items extends React.Component {
 
@@ -37,6 +36,17 @@ export class Items extends React.Component {
         this.setState({ showEditForm: !ok, activeItem: null });
     }
 
+    // -> 
+    sorter = (sortBy) => {
+        return (a,b) => {
+            const compA = a[sortBy];
+            const compB = b[sortBy];
+            if (compA < compB) return -1;
+            if (compA > compB) return 1;
+            if (compA === compB) return 0;    
+        }
+    }
+        
     render() {
         return (
             <div className="ui">
@@ -44,8 +54,9 @@ export class Items extends React.Component {
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
+                    sorterFn={this.sorter('dateRaw')}
                     items={this.props.items.filter(i => {
-                        return i.date;
+                        return !!i.date;
                     })}>
                 </GenericTable>
 
@@ -53,7 +64,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    items={this.props.items.filter(i => !i.date)}>
+                    items={this.props.items.filter(i => !i.dateRaw)}>
                 </GenericTable>
                 {
                     this.state.showNewForm ?

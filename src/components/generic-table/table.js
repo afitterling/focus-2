@@ -1,7 +1,8 @@
 import React from 'react';
 import { Table, Header } from 'semantic-ui-react';
 
-export const GenericTable = ({ items, title, onDelete, displayName, onCellClick, children }) => {
+export const GenericTable = ({ items, sorterFn, title, onDelete, displayName, onCellClick }) => {
+
     return (
         <Table unstackable>
             <Table.Header>
@@ -11,7 +12,22 @@ export const GenericTable = ({ items, title, onDelete, displayName, onCellClick,
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {items.map((item) => (
+                {sorterFn ? items.sort(sorterFn).map((item) => (
+                    <Table.Row key={item.id}>
+                        <Table.Cell onClick={onCellClick(item.id)}>
+                            <Header as='h4' image>                                
+                                <Header.Content>
+                                    {item[displayName[0]]} 
+                                    <Header.Subheader>
+                                        {item[displayName[1]]}<br/>
+                                        <em>{item[displayName[2]]}</em>
+                                    </Header.Subheader>
+                                </Header.Content>
+                            </Header>
+                        </Table.Cell>
+                        <Table.Cell><button className="circular icon button ui" onClick={onDelete(item.id)}><i className="icon trash"></i></button></Table.Cell>
+                    </Table.Row>
+                )) : items.map((item) => (
                     <Table.Row key={item.id}>
                         <Table.Cell onClick={onCellClick(item.id)}>
                             <Header as='h4' image>                                

@@ -44,7 +44,7 @@ export class ItemForm extends React.Component {
     onDateProcess = debounce((value) => {
       if (!value) return;
       const date = this.findAValidPattern(value);
-      if (date.isValid()) this.setState({form: {...this.state.form, date: date.format('ddd, DD.MM.YYYY')}});
+      if (date.isValid()) this.setState({form: {...this.state.form, date: date.format('ddd, DD.MM.YYYY'), dateRaw: moment(date, 'ddd DD.MM.YYYY').format()}});
     }, 1500);
 
     onChange = (field) => {
