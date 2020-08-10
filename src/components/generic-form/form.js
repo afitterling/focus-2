@@ -48,7 +48,12 @@ export class ItemForm extends React.Component {
             <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
-          <Button type="submit" className="button secondary">Save</Button>
+          <Button type="submit" 
+          content="save"
+          labelPosition='right'
+          icon='checkmark'
+          positive
+        />
         </Form>
       );
     }
