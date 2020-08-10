@@ -81,7 +81,7 @@ export class ItemForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Scheduled</label>
-            <input type="text" placeholder='human readable string' value={this.state.form.date} onChange={this.onDateChange} />
+            <input type="text" placeholder='human readable date' value={this.state.form.date} onChange={this.onDateChange} />
           </Form.Field>
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
