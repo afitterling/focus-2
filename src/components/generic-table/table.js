@@ -18,14 +18,13 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
                 </Table.Row>
             </Table.Header>
             <Table.Body>   
-                {/* BUG */}
                 {sortedItems.map((item) => (
                     <Table.Row key={item.id}>
                         <Table.Cell onClick={onCellClick(item.id)}>
                             <Header as='h4' image style={{width: '100%'}}>                                
                                 <Header.Content style={{width: '100%'}}>
                                     {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}<br/>
-                                    {item.progress > 0 ? <Progress style={{width: '100%'}} percent={item.progress/12*100} size='tiny'></Progress> : null}
+                                    {item.progress > 0 ? <Progress style={{margin: '5px 0', width: '100%'}} percent={item.progress/12*100} size='tiny'></Progress> : null}
                                     <Header.Subheader>
                                         {item[displayName[1]]}<br/>
                                         <em>{item[displayName[2]]}</em>
