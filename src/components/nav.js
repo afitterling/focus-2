@@ -15,14 +15,14 @@ export default class MenuExampleStackable extends Component {
           <img alt="" src='https://react.semantic-ui.com/logo.png' /> <b>Focus-2</b>
         </Menu.Item>
 
-        <Menu.Item
+{/*         <Menu.Item
           name='items'
           active={activeItem === 'items'}
           onClick={this.handleItemClick}
         >
           Overview
         </Menu.Item>
-
+ */}
       </Menu>
     )
   }

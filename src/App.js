@@ -61,11 +61,16 @@ class App extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
+      <div class="ui container">
         <MenuExampleStackable></MenuExampleStackable>
-        <div className="ui message info">Warning. Persistency happens only in this particular browser window! API under construction.</div>
+        <div className="ui message yellow">Currently persistency works only in each particular browser window! To work with this app in production please bookmark this URL in your favorite browser and open it there consistently from now on.</div>
         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
-      </React.Fragment>
+        <div class="ui vertical footer">
+          <div class="ui container">
+            <footer><em>sp33c</em> 2020; all rights reserved; info@sp33c.tech</footer> 
+          </div>
+        </div>      
+      </div>      
     );  
   }
 }
