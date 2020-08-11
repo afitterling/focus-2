@@ -65,7 +65,7 @@ class App extends React.Component {
         <MenuExampleStackable></MenuExampleStackable>
         <div className="ui message yellow">Currently persistency works only in each particular browser window! To work with this app in production please bookmark this URL in your favorite browser and open it there consistently from now on.</div>
         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
-        <div class="ui vertical footer">
+        <div class="ui vertical footer" style={{marginTop: '40px'}}>
           <div class="ui container">
             <footer><em>sp33c</em> 2020; all rights reserved; info@sp33c.tech</footer> 
           </div>

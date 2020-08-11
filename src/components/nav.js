@@ -7,15 +7,20 @@ export default class MenuExampleStackable extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state
+    //const { activeItem } = this.state
 
     return (
       <Menu stackable>
         <Menu.Item>
-          <img alt="" src='https://react.semantic-ui.com/logo.png' /> <b>Focus-2</b>
+          <h2 class="ui header">
+            <i class="calendar icon"></i>
+            <div class="content">
+              Focus-2
+            </div>
+          </h2>
         </Menu.Item>
 
-{/*         <Menu.Item
+        {/*         <Menu.Item
           name='items'
           active={activeItem === 'items'}
           onClick={this.handleItemClick}
