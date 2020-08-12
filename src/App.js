@@ -67,11 +67,19 @@ class App extends React.Component {
       <Router>
         <Grid columns={1}>
           <Grid.Column>
-            <div class="ui container right aligned">
-              <button class="ui icon button" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
-                <i class="align justify icon"></i>
+          <div className="ui two column container grid">
+            <div className="column">
+              <h2>Focus-2</h2>
+              {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
+            </div>
+            <div className="column">
+            <div className="ui container right aligned">
+              <button className="ui icon button" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
+                <i className="align justify icon"></i>
               </button>
             </div>
+            </div>
+          </div>
           </Grid.Column>
 
           <Grid.Column>
@@ -102,7 +110,7 @@ class App extends React.Component {
 
               <Sidebar.Pusher dimmed={this.state.visible}>
                 <Segment basic>
-                  <div class="ui container">
+                  <div className="ui container">
                     <Switch>
                       <Route exact path="/">
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
@@ -111,8 +119,8 @@ class App extends React.Component {
                       <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                     </Switch>
-                    <div class="ui vertical footer" style={{ marginTop: '40px' }}>
-                      <div class="ui container">
+                    <div className="ui vertical footer" style={{ marginTop: '40px' }}>
+                      <div className="ui container">
                         <footer><em>sp33c.tech</em> 2020</footer>
                       </div>
                     </div>
