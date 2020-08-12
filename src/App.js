@@ -3,6 +3,7 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
 import MenuExampleStackable from './components/nav';
+import { Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 
 class App extends React.Component {
 
@@ -61,16 +62,24 @@ class App extends React.Component {
 
   render () {
     return (
-      <div class="ui container">
-        <MenuExampleStackable></MenuExampleStackable>
-        <div className="ui message yellow">Currently persistency works only in each particular browser window! To work with this app in production please bookmark this URL in your favorite browser and open it there consistently from now on.</div>
-        <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
-        <div class="ui vertical footer" style={{marginTop: '40px'}}>
-          <div class="ui container">
-            <footer><em>sp33c</em> 2020; all rights reserved; info@sp33c.tech</footer> 
-          </div>
-        </div>      
-      </div>      
+      <Router>
+        <div class="ui container">
+          <MenuExampleStackable></MenuExampleStackable>
+          <div className="ui message yellow">Currently persistency works only in each particular browser window! To work with this app in production please bookmark this URL in your favorite browser and open it there consistently from now on.</div>
+          <Switch>
+            <Route exact path="/">
+              <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+            </Route>
+            <Route path="/focus">
+            </Route>
+          </Switch>
+          <div class="ui vertical footer" style={{marginTop: '40px'}}>
+            <div class="ui container">
+              <footer><em>sp33c</em> 2020; all rights reserved; info@sp33c.tech</footer> 
+            </div>
+          </div>      
+        </div>    
+      </Router>  
     );  
   }
 }
