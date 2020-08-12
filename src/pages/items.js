@@ -63,14 +63,14 @@ export class Items extends React.Component {
     }
 
     onFocusModeFilter(items){
-        if (this.state.focusActive){
+        if (this.props.focusActive){
             return items.filter(i => i.focus);
         }
         return items;
     }
 
     onFocusFilterDate(items){
-        if (this.state.focusActive){
+        if (this.props.focusActive){
             return items.filter(i => moment().diff(moment(i.dateRaw), 'days') === 0 || i.focus);
         }
         return items;
@@ -79,11 +79,6 @@ export class Items extends React.Component {
     render() {
         return (
             <div className="ui">
-                <div class="ui large buttons">
-                    <button class="ui button" onClick={this.onModeChange({focus: false})}>All</button>
-                    <div class="or"></div>
-                    <button class="ui button" onClick={this.onModeChange({focus: true})}>Focus</button>
-                </div>
                 <GenericTable title={['Scheduled', '']}
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
