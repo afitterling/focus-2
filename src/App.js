@@ -154,7 +154,7 @@ class App extends React.Component {
                       <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                       <Route path="/dimensions">
-                        <Dimensions></Dimensions>
+                        <Dimensions items={this.state.items}></Dimensions>
                       </Route>
                     </Switch>
                     <div className="ui vertical footer" style={{ marginTop: '40px' }}>
