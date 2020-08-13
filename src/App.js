@@ -65,7 +65,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Grid columns={1}>
+        <Grid columns={1} style={{marginTop: '0.5rem'}}>
           <Grid.Column>
           <div className="ui two column container grid">
             <div className="column">
@@ -97,12 +97,12 @@ class App extends React.Component {
                 <Link to="/">
                   <Menu.Item as='a'>
                     <Icon name='tasks' />
-                    Home
+                    All
                   </Menu.Item>
                 </Link>
                 <Link to="/focus">
                   <Menu.Item as='a'>
-                    <Icon name='eye' />
+                    <Icon name='crosshairs' />
                     Focus
                   </Menu.Item>
                 </Link>
