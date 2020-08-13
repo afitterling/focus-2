@@ -7,7 +7,7 @@ import { RadarChart as Radar } from '../components/graphs/radar';
 const congruent = (item, filter) => {    
     if (!item.dimensions) return false;
     return !!dims.some(d => {
-        return parseInt(item.dimensions[d.id]) <= filter[d.id];
+        return parseInt(item.dimensions[d.id]) >= filter[d.id];
     });
 }
 
