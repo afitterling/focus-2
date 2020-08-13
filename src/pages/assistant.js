@@ -12,9 +12,10 @@ const congruent = (item, filter) => {
 }
 
 export const Assistant = ({items, filter}) => {
-    const values = items.filter( i => {
+    const filteredItems = items.filter( i => {
         return congruent(i, filter);
-    }).map(i => {
+    });
+    const values = filteredItems.map(i => {
         return {
             key: i.id,
             label: i.title,
@@ -23,7 +24,7 @@ export const Assistant = ({items, filter}) => {
     });
     return (
         <div className="ui">
-            <GenericTable sorterFns={[]} onDelete={null} onCellClick={()=>{}} displayName={['title']} title={['Selected', '']} items={items}></GenericTable>
+            <GenericTable sorterFns={[]} onDelete={null} onCellClick={()=>{}} displayName={['title']} title={['Selected', '']} items={filteredItems}></GenericTable>
             <Radar variables={dims.map( i => {
                 return {key: i.id, label: i.name};
             }) } values={values}></Radar>
