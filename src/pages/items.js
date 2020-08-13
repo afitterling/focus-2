@@ -79,6 +79,16 @@ export class Items extends React.Component {
     render() {
         return (
             <div className="ui">
+                <GenericTable title={['Doing', '']}
+                    displayName={['title', 'desc', 'date']}
+                    onCellClick={this.onCellClick}
+                    onDelete={this.props.onItemDelete}
+                    sorterFns={[this.ascSorter('dateRaw'), this.sorterNumericDesc('progress')]}
+                    items={this.onFocusFilterDate(this.props.items.filter(i => {
+                        return i.inProgress;
+                    }))}>
+                </GenericTable>
+
                 <GenericTable title={['Scheduled', '']}
                     displayName={['title', 'desc', 'date']}
                     onCellClick={this.onCellClick}
