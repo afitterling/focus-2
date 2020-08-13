@@ -1,7 +1,7 @@
 export const Dimensions = [
 
     {id: 'leisure', name: 'Leisure'},
-    {id: 'goal', name: 'Life Goal'},
+//    {id: 'goal', name: 'Life Goal'}, --> different scheme
     {id: 'work', name: 'Work'},
     {id: 'balance', name: 'Life Balance'},
     {id: 'family', name: 'Family'},
