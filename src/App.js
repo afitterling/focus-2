@@ -86,7 +86,7 @@ class App extends React.Component {
             <Sidebar.Pushable as={Segment}>
               <Sidebar
                 as={Menu}
-                animation='overlay'
+                animation='push'
                 icon='labeled'
                 inverted
                 vertical
@@ -108,7 +108,7 @@ class App extends React.Component {
                 </Link>
               </Sidebar>
 
-              <Sidebar.Pusher dimmed={this.state.visible}>
+              <Sidebar.Pusher>
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
