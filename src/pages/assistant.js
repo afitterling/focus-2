@@ -6,8 +6,8 @@ import { RadarChart as Radar } from '../components/graphs/radar';
 
 const congruent = (item, filter) => {    
     if (!item.dimensions) return false;
-    return !!dims.every(d => {
-        return filter[d.id] >= parseInt(item.dimensions[d.id]);
+    return !!dims.some(d => {
+        return filter[d.id] > parseInt(item.dimensions[d.id]);
     });
 }
 
