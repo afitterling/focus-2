@@ -4,8 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { debounce } from 'lodash';
 import moment from 'moment';
 import RatingExampleControlled from '../../components/rating';
+import { Dimensions as dims } from '../../models/dimensions'
 
-const emptyForm = {title: '', desc: '', date: '', focus: false, progress: 0};
+const emptyForm = {title: '', desc: '', date: '', focus: false, inProgress: false, progress: 0, dimensions: {}};
+dims.forEach( v => {
+  emptyForm.dimensions[v.id] = 0;
+});
 
 export class ItemForm extends React.Component {
 
@@ -41,6 +45,8 @@ export class ItemForm extends React.Component {
       return moment(value, "ddd, DD.MM.YYYY");
     }
 
+    onDimModalShow = () => {}
+
     onDateProcess = debounce((value) => {
       if (!value) return;
       
@@ -73,6 +79,14 @@ export class ItemForm extends React.Component {
       form['date'] = e.target.value;
       this.setState({form: {...form}});
       this.onDateProcess(e.target.value);
+    }
+
+    onDimensionChange = (key) => {
+      const form = this.state.form.dimesions ? this.state.form : Object.assign({dimensions: {}}, this.state.form);
+      return (v) => { 
+        form.dimensions[key] = v;
+        this.setState({form});
+      }
     }
 
     onResetDate = (e) => {
@@ -147,6 +161,16 @@ export class ItemForm extends React.Component {
           <Form.Field>
             <RatingExampleControlled value={this.state.form.progress} onChange={this.onProgressChange} name={'Progress'}></RatingExampleControlled>
           </Form.Field>
+
+          <h2>Dimensions</h2>
+          {dims.map( dim => {            
+            return (
+              <Form.Field key={dim.id}>
+                <RatingExampleControlled value={this.state.form.dimensions[dim.id]} onChange={this.onDimensionChange(dim.id)} name={dim.name}></RatingExampleControlled>
+              </Form.Field>
+            );
+          })}
+
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
             content="save"

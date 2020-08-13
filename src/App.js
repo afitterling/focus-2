@@ -25,9 +25,7 @@ class App extends React.Component {
     this.setState({ items: [...this.state.items, newItem] });
     localStorage.setItem('items', JSON.stringify([...this.state.items, newItem]));
     this.setState({ showNewForm: false });
-    // so cool!
-    const { id, desc, title, ...formParamsDimensions } = { ...formParams }; // exclude id desc title
-    this.setState({ values: [...this.state.values, { key: newItem.id, label: title, values: { ...formParamsDimensions } }] });
+    this.setState({ values: [...this.state.values, newItem] });
   }
 
   onUpdate = (formParams) => {
