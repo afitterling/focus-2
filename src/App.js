@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar } from 'semantic-ui-react'
+import { Dimensions } from './pages/dimensions';
 
 class App extends React.Component {
 
@@ -100,17 +101,6 @@ class App extends React.Component {
               >
                 <Link to="/">
                   <Menu.Item
-                    name='all'
-                    as='li'
-                    active={this.state.activeItem === 'all'}
-                    onClick={this.menuItemClick}
-                  >
-                    <Icon name='tasks' />
-                    All
-                  </Menu.Item>
-                </Link>
-                <Link to="/focus">
-                  <Menu.Item
                     name='focus'
                     as='li'
                     active={this.state.activeItem === 'focus'}
@@ -120,17 +110,42 @@ class App extends React.Component {
                     Focus
                   </Menu.Item>
                 </Link>
+                <Link to="/all">
+                  <Menu.Item
+                    name='all'
+                    as='li'
+                    active={this.state.activeItem === 'all'}
+                    onClick={this.menuItemClick}
+                  >
+                    <Icon name='sort amount down' />
+                    All
+                  </Menu.Item>
+                </Link>
+                <Link to="/dimensions">
+                  <Menu.Item
+                    name='dimensions'
+                    as='li'
+                    active={this.state.activeItem === 'dimensions'}
+                    onClick={this.menuItemClick}
+                  >
+                    <Icon name='braille' />
+                    Dimensions
+                  </Menu.Item>
+                </Link>
               </Sidebar>
 
               <Sidebar.Pusher>
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
-                      <Route exact path="/">
+                      <Route path="/all">
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
-                      <Route path="/focus">
+                      <Route exact path="/">
                       <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+                      </Route>
+                      <Route path="/dimensions">
+                        <Dimensions></Dimensions>
                       </Route>
                     </Switch>
                     <div className="ui vertical footer" style={{ marginTop: '40px' }}>
