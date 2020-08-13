@@ -62,6 +62,10 @@ class App extends React.Component {
     this.setState({ showNewForm: true });
   }
 
+  menuItemClick = (e, {name}) => {
+    this.setState({activeItem: name});
+  }
+
   render() {
     return (
       <Router>
@@ -86,7 +90,7 @@ class App extends React.Component {
             <Sidebar.Pushable as={Segment}>
               <Sidebar
                 as={Menu}
-                animation='push'
+                animation='overlay'
                 icon='labeled'
                 inverted
                 vertical
@@ -95,13 +99,23 @@ class App extends React.Component {
                 width='thin'
               >
                 <Link to="/">
-                  <Menu.Item as='a'>
+                  <Menu.Item
+                    name='all'
+                    as='li'
+                    active={this.state.activeItem === 'all'}
+                    onClick={this.menuItemClick}
+                  >
                     <Icon name='tasks' />
                     All
                   </Menu.Item>
                 </Link>
                 <Link to="/focus">
-                  <Menu.Item as='a'>
+                  <Menu.Item
+                    name='focus'
+                    as='li'
+                    active={this.state.activeItem === 'focus'}
+                    onClick={this.menuItemClick}
+                  >
                     <Icon name='crosshairs' />
                     Focus
                   </Menu.Item>
