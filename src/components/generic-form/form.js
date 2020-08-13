@@ -7,14 +7,14 @@ import RatingExampleControlled from '../../components/rating';
 import { Dimensions as dims } from '../../models/dimensions'
 
 const emptyForm = {title: '', desc: '', date: '', focus: false, inProgress: false, progress: 0, dimensions: {}};
-dims.forEach( v => {
-  emptyForm.dimensions[v.id] = 0;
-});
 
 export class ItemForm extends React.Component {
 
     constructor(props){
       super(props);
+      dims.forEach( v => {
+        emptyForm.dimensions[v.id] = 0;
+      });
       this.state = this.props.item ? {form: {...this.props.item}} : {form: {...emptyForm}};
       console.log(this.state);
     }
