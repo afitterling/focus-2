@@ -5,6 +5,7 @@ export const Dimensions = [
     {id: 'work', name: 'Work'},
     {id: 'balance', name: 'Life Balance'},
     {id: 'family', name: 'Family'},
+    {id: 'health', name: 'Health'},
     {id: 'sustain', name: 'Life Sustaining'}
 
 ];
