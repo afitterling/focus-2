@@ -15,8 +15,7 @@ export class ItemForm extends React.Component {
       dims.forEach( v => {
         emptyForm.dimensions[v.id] = 0;
       });
-      const editItem = this.props.item.dimensions ? this.props.item : Object.assign({dimensions: {...emptyForm.dimensions}}, this.props.item);
-      this.state = this.props.item ? {form: {...editItem}} : {form: {...emptyForm}};
+      this.state = this.props.item ? {form: {...Object.assign({dimensions: {...emptyForm.dimensions}}, this.props.item)}} : {form: {...emptyForm}};
       console.log(this.state);
     }
 
