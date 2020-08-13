@@ -135,7 +135,7 @@ class App extends React.Component {
                     </Switch>
                     <div className="ui vertical footer" style={{ marginTop: '40px' }}>
                       <div className="ui container">
-                        <footer><em>sp33c.tech</em> 2020</footer>
+                        <footer><em><a href="https://sp33c.tech">sp33c.tech</a></em> 2020</footer>
                       </div>
                     </div>
                   </div>
