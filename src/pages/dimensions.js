@@ -5,7 +5,7 @@ import { GenericTable } from '../components/generic-table/table-2';
 import { RadarChart as Radar } from '../components/graphs/radar';
 
 export const Dimensions = ({items}) => {
-    const values = items.map(i => {
+    const values = items.filter(i => i.focus ).map(i => {
         return {
             key: i.id,
             label: i.title,
