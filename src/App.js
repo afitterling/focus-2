@@ -5,6 +5,7 @@ import { Items } from './pages/items';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar } from 'semantic-ui-react'
 import { Dimensions } from './pages/dimensions';
+import { Assistant } from './pages/assistant';
 
 class App extends React.Component {
 
@@ -155,6 +156,9 @@ class App extends React.Component {
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.state.items}></Dimensions>
+                      </Route>
+                      <Route path="/assistant">
+                        <Assistant items={this.state.items}></Assistant>
                       </Route>
                     </Switch>
                     <div className="ui vertical footer" style={{ marginTop: '40px' }}>
