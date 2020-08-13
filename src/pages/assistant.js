@@ -4,8 +4,17 @@ import { Dimensions as dims} from '../models/dimensions'
 import { GenericTable } from '../components/generic-table/table-2';
 import { RadarChart as Radar } from '../components/graphs/radar';
 
-export const Assistant = ({items}) => {
-    const values = items.map(i => {
+const congruent = (item, filter) => {    
+    if (!item.dimensions) return false;
+    return !!dims.some(d => {
+        return parseInt(item.dimensions[d.id]) <= filter[d.id];
+    });
+}
+
+export const Assistant = ({items, filter}) => {
+    const values = items.filter( i => {
+        return congruent(i, filter);
+    }).map(i => {
         return {
             key: i.id,
             label: i.title,

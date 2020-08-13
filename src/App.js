@@ -3,17 +3,22 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
-import { Grid, Segment, Menu, Icon, Sidebar } from 'semantic-ui-react'
+import { Grid, Segment, Menu, Icon, Sidebar, Form } from 'semantic-ui-react'
 import { Dimensions } from './pages/dimensions';
+import { Dimensions as dims } from './models/dimensions';
 import { Assistant } from './pages/assistant';
+import RatingExampleControlled from './components/rating';
 
 class App extends React.Component {
 
 
-  constructor() {
+  constructor() {    
     super();
+    const fdims = {};
+    dims.forEach( i => fdims[i.id] = 0);
     this.state = {
       items: [],
+      filterDimensions: fdims,
       visible: false,
       showNewForm: false,
       values: []
@@ -62,28 +67,36 @@ class App extends React.Component {
     this.setState({ showNewForm: true });
   }
 
-  menuItemClick = (e, {name}) => {
-    this.setState({activeItem: name});
+  menuItemClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+  }
+
+  onfilterDimChange = (id) => {
+    const state = this.state.filterDimensions;
+    return (v) => {
+      state[id] = v;
+      this.setState({filterDimensions: state});
+    };
   }
 
   render() {
     return (
       <Router>
-        <Grid columns={1} style={{marginTop: '0.5rem'}}>
+        <Grid columns={1} style={{ marginTop: '0.5rem' }}>
           <Grid.Column>
-          <div className="ui two column container grid">
-            <div className="column">
-              <h2>Focus-2</h2>
-              {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
+            <div className="ui two column container grid">
+              <div className="column">
+                <h2>Focus-2</h2>
+                {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
+              </div>
+              <div className="column">
+                <div className="ui container right aligned">
+                  <button className="ui icon button" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
+                    <i className="align justify icon"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="column">
-            <div className="ui container right aligned">
-              <button className="ui icon button" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
-                <i className="align justify icon"></i>
-              </button>
-            </div>
-            </div>
-          </div>
           </Grid.Column>
 
           <Grid.Column>
@@ -152,13 +165,20 @@ class App extends React.Component {
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                       <Route exact path="/">
-                      <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+                        <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.state.items}></Dimensions>
                       </Route>
                       <Route path="/assistant">
-                        <Assistant items={this.state.items}></Assistant>
+                        {dims.map(dim => {
+                          return (
+                            <Form.Field key={dim.id}>
+                              <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
+                            </Form.Field>
+                          );
+                        })}
+                        <Assistant filter={this.state.filterDimensions} items={this.state.items}></Assistant>
                       </Route>
                     </Switch>
                     <div className="ui vertical footer" style={{ marginTop: '40px' }}>
