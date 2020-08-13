@@ -4,6 +4,7 @@ export const Dimensions = [
     {id: 'goal', name: 'Life Goal'},
     {id: 'work', name: 'Work'},
     {id: 'balance', name: 'Life Balance'},
+    {id: 'family', name: 'Family'},
     {id: 'sustain', name: 'Life Sustaining'}
 
 ];
