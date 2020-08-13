@@ -132,6 +132,17 @@ class App extends React.Component {
                     Dimensions
                   </Menu.Item>
                 </Link>
+                <Link to="/assistant">
+                  <Menu.Item
+                    name='assistant'
+                    as='li'
+                    active={this.state.activeItem === 'assistant'}
+                    onClick={this.menuItemClick}
+                  >
+                    <Icon name='user' />
+                    Assistant
+                  </Menu.Item>
+                </Link>
               </Sidebar>
 
               <Sidebar.Pusher>
