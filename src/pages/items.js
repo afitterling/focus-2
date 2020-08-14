@@ -21,6 +21,7 @@ export class Items extends React.Component {
 
     onNewItem() {
         const newItem = {title: '', desc: '', date: '', focus: false, inProgress: false, progress: 0, dimensions: {}};
+        // TODO replace failsafe
         dims.forEach( v => {
             newItem.dimensions[v.id] = 0;
         });          
@@ -33,9 +34,18 @@ export class Items extends React.Component {
         this.setState({ showNewForm: false, showEditForm: false});
     }
 
+    // this helper function takes care of old items stored in data source if no dimensions where defined
+    failSafeDimensions = (item) => {
+        const enhanced = Object.assign({dimensions: {}}, item);
+        dims.forEach( ({id}) => {
+            enhanced.dimensions[id] = enhanced.dimensions[id] ? enhanced.dimensions[id] : 0;
+        })
+        return enhanced;
+    }
+
     onCellClick = (id) => () => {
         if (id && !this.state.showNewForm) {
-            this.setState({ showEditForm: true, activeItem: this.props.items.find(i => i.id === id) });
+            this.setState({ showEditForm: true, activeItem: this.failSafeDimensions(this.props.items.find(i => i.id === id)) });
         }
     }
 
