@@ -6,16 +6,11 @@ import moment from 'moment';
 import RatingExampleControlled from '../../components/rating';
 import { Dimensions as dims } from '../../models/dimensions'
 
-const emptyForm = {title: '', desc: '', date: '', focus: false, inProgress: false, progress: 0, dimensions: {}};
-
 export class ItemForm extends React.Component {
 
     constructor(props){
       super(props);
-      dims.forEach( v => {
-        emptyForm.dimensions[v.id] = 0;
-      });
-      this.state = this.props.item ? {form: {...Object.assign({dimensions: {...emptyForm.dimensions}}, this.props.item)}} : {form: {...emptyForm}};
+      this.state = {form: this.props.item};
       console.log(this.state);
     }
 
@@ -27,7 +22,7 @@ export class ItemForm extends React.Component {
       if (this.props.onUpdateItem) {
         const updateItem = {...this.state.form};
         this.props.onUpdateItem(updateItem);
-        }
+      }
     }
 
     findAValidPattern = (value) => {

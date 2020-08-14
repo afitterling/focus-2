@@ -3,6 +3,7 @@ import { GenericTable } from '../components/generic-table/table';
 import { ItemForm } from '../components/generic-form/form';
 import ModalBasic from '../components/modal';
 import moment from 'moment';
+import { Dimensions as dims} from '../models/dimensions'
 
 export class Items extends React.Component {
 
@@ -19,11 +20,17 @@ export class Items extends React.Component {
     }
 
     onNewItem() {
-        this.setState({ showNewForm: true });
+        const newItem = {title: '', desc: '', date: '', focus: false, inProgress: false, progress: 0, dimensions: {}};
+        dims.forEach( v => {
+            newItem.dimensions[v.id] = 0;
+        });          
+        this.setState({ showNewForm: true, activeItem: {
+            ...newItem
+        } });
     }
 
     onCancel() {
-        this.setState({ showNewForm: false, showEditForm: false, activeItem: null });
+        this.setState({ showNewForm: false, showEditForm: false});
     }
 
     onCellClick = (id) => () => {
@@ -110,7 +117,7 @@ export class Items extends React.Component {
                 {
                     this.state.showNewForm ?
                         <ModalBasic title='Add Item'>
-                            <ItemForm onAddItem={this.onItemAdd} onSubmit={this.onItemAdd} onCancel={this.onCancel}></ItemForm>
+                            <ItemForm item={this.state.activeItem} onAddItem={this.onItemAdd} onSubmit={this.onItemAdd} onCancel={this.onCancel}></ItemForm>
                         </ModalBasic> : null
                 }
 
