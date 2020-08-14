@@ -12,10 +12,10 @@ import RatingExampleControlled from './components/rating';
 class App extends React.Component {
 
 
-  constructor() {    
+  constructor() {
     super();
     const fdims = {};
-    dims.forEach( i => fdims[i.id] = 0);
+    dims.forEach(i => fdims[i.id] = 0);
     this.state = {
       items: [],
       filterDimensions: fdims,
@@ -75,7 +75,7 @@ class App extends React.Component {
     const state = this.state.filterDimensions;
     return (v) => {
       state[id] = v;
-      this.setState({filterDimensions: state});
+      this.setState({ filterDimensions: state });
     };
   }
 
@@ -86,13 +86,19 @@ class App extends React.Component {
           <Grid.Column>
             <div className="ui two column container grid">
               <div className="column">
-                <h2>Focus-2</h2>
+                <h2 class="ui header">
+                  <i class="circle outline icon"></i>
+                  <div class="content">
+                    Focus-2
+                    <div class="sub header">Activity Assistant</div>
+                  </div>
+                </h2>
                 {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
               </div>
               <div className="column">
                 <div className="ui container right aligned">
-                  <button className="ui icon button" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
-                    <i className="align justify icon"></i>
+                  <button className="ui icon button secondary" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
+                    <i className="expand icon"></i>
                   </button>
                 </div>
               </div>
@@ -105,7 +111,6 @@ class App extends React.Component {
                 as={Menu}
                 animation='overlay'
                 icon='labeled'
-                inverted
                 vertical
                 onHide={() => { this.setState({ visible: false }) }}
                 visible={this.state.visible}
@@ -130,10 +135,10 @@ class App extends React.Component {
                     onClick={this.menuItemClick}
                   >
                     <Icon name='sort amount down' />
-                    Full List
+                    Activities
                   </Menu.Item>
                 </Link>
-{/*                 <Link to="/dimensions">
+                {/*                 <Link to="/dimensions">
                   <Menu.Item
                     name='dimensions'
                     as='li'
@@ -144,7 +149,7 @@ class App extends React.Component {
                     Dimensions
                   </Menu.Item>
                 </Link>
-*/}                
+*/}
                 <Link to="/assistant">
                   <Menu.Item
                     name='assistant'
@@ -158,7 +163,7 @@ class App extends React.Component {
                 </Link>
               </Sidebar>
 
-              <Sidebar.Pusher>
+              <Sidebar.Pusher dimmed={this.state.visible}>
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
