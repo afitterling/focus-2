@@ -13,7 +13,7 @@ export class ItemForm extends React.Component {
     constructor(props){
       super(props);
       dims.forEach( v => {
-        emptyForm.dimensions[v.id] = 1;
+        emptyForm.dimensions[v.id] = 0;
       });
       this.state = this.props.item ? {form: {...Object.assign({dimensions: {...emptyForm.dimensions}}, this.props.item)}} : {form: {...emptyForm}};
       console.log(this.state);

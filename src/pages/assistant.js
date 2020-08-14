@@ -12,7 +12,10 @@ const congruent = (item, filter) => {
 }
 
 export const Assistant = ({items, filter}) => {
-    const filteredItems = items.filter( i => {
+    const filteredItems = items.filter(i => i.dimensions).map(i => {
+        dims.forEach(d => i.dimensions[d.id] = i.dimensions[d.id] ? i.dimensions[d.id] : 0);
+        return i;
+    }).filter( i => {
         return congruent(i, filter);
     });
     const values = filteredItems.map(i => {
