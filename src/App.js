@@ -97,9 +97,11 @@ class App extends React.Component {
               </div>
               <div className="column">
                 <div className="ui container right aligned">
-                  <button className="ui icon button secondary" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
-                    <i className="expand icon"></i>
-                  </button>
+                  <h2 class="ui header">
+                    <button className="ui icon button secondary" onClick={() => { this.setState({ visible: !this.state.visible }) }}>
+                      <i className="align justify icon"></i>
+                    </button>
+                  </h2>
                 </div>
               </div>
             </div>
