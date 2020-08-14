@@ -111,7 +111,7 @@ class App extends React.Component {
                 visible={this.state.visible}
                 width='thin'
               >
-                <Link to="/">
+                <Link to="/focus">
                   <Menu.Item
                     name='focus'
                     as='li'
@@ -122,7 +122,7 @@ class App extends React.Component {
                     Focus
                   </Menu.Item>
                 </Link>
-                <Link to="/all">
+                <Link to="/">
                   <Menu.Item
                     name='all'
                     as='li'
@@ -130,10 +130,10 @@ class App extends React.Component {
                     onClick={this.menuItemClick}
                   >
                     <Icon name='sort amount down' />
-                    All
+                    Full List
                   </Menu.Item>
                 </Link>
-                <Link to="/dimensions">
+{/*                 <Link to="/dimensions">
                   <Menu.Item
                     name='dimensions'
                     as='li'
@@ -144,6 +144,7 @@ class App extends React.Component {
                     Dimensions
                   </Menu.Item>
                 </Link>
+*/}                
                 <Link to="/assistant">
                   <Menu.Item
                     name='assistant'
@@ -151,8 +152,8 @@ class App extends React.Component {
                     active={this.state.activeItem === 'assistant'}
                     onClick={this.menuItemClick}
                   >
-                    <Icon name='user' />
-                    Assistant
+                    <Icon name='braille' />
+                    Dimensions
                   </Menu.Item>
                 </Link>
               </Sidebar>
@@ -161,10 +162,10 @@ class App extends React.Component {
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
-                      <Route path="/all">
+                      <Route exact path="/">
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
-                      <Route exact path="/">
+                      <Route path="/focus">
                         <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                       <Route path="/dimensions">
