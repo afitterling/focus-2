@@ -175,18 +175,20 @@ class App extends React.Component {
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                       <Route path="/focus">
+                        <div className="ui message blue">Due to an active filter any newly created item may not be visible on this page. May need to change to 'overall activities' to view it.</div>
                         <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.state.items}></Dimensions>
                       </Route>
                       <Route path="/assistant">
-                        {dims.map(dim => {
-                          return (
-                            <Form.Field key={dim.id}>
-                              <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
-                            </Form.Field>
-                          );
+                          <div className="ui message blue">Due to filtering any newly created item may not be visible on this page. May need to reset filter to see it.</div>
+                          {dims.map(dim => {
+                            return (
+                              <Form.Field key={dim.id}>
+                                <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
+                              </Form.Field>
+                            );
                         })}
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.state.items, this.state.filterDimensions, congruentMatcher)}></Items>
                         <Radar variables={dims.map(i => {
