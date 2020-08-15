@@ -11,6 +11,7 @@ export const Dimensions = [
     {id: 'life', name: 'Life'},
     {id: 'health', name: 'Health'},
     {id: 'alleviate', name: 'Psychol. Wellbeing'},
+    {id: 'emergency', name: 'Emergency'},
     {id: 'balance', name: 'Life Balance'},
     {id: 'family', name: 'Family'},
     {id: 'social', name: 'Social'}
