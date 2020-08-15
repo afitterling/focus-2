@@ -123,7 +123,7 @@ export class Items extends React.Component {
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.sorterNumericDesc('progress')]}
                     items={this.onFocusModeFilter(this.props.items.filter(i => !i.dateRaw))}>
-                </GenericTable>                
+                </GenericTable>
                 {
                     this.state.showNewForm ?
                         <ModalBasic title='Add Item'>
