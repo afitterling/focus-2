@@ -6,6 +6,7 @@ export const Dimensions = [
     {id: 'important', name: 'Important'},
     {id: 'work', name: 'Work'},
     {id: 'finance', name: 'Finance'},
+    {id: 'it', name: 'IT'},
     {id: 'jobsearch', name: 'Job Search'},
     {id: 'sustain', name: 'Life Sustaining'},
     {id: 'learn', name: 'Learning'},
