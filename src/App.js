@@ -6,7 +6,7 @@ import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar, Form } from 'semantic-ui-react'
 import { Dimensions } from './pages/dimensions';
 import { Dimensions as dims } from './models/dimensions';
-import { Assistant } from './pages/assistant';
+import { Assistant, congruentMatcher, filterItems } from './pages/assistant';
 import RatingExampleControlled from './components/rating';
 
 class App extends React.Component {
@@ -184,7 +184,7 @@ class App extends React.Component {
                             </Form.Field>
                           );
                         })}
-                        <Assistant filter={this.state.filterDimensions} items={this.state.items}></Assistant>
+                        <Assistant matcher={congruentMatcher} activeFilter={this.state.filterDimensions} items={filterItems(this.state.items, this.state.filterDimensions, congruentMatcher)}></Assistant>
                       </Route>
                     </Switch>
                     <div className="ui vertical footer" style={{ marginTop: '40px' }}>
