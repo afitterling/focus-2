@@ -87,11 +87,11 @@ class App extends React.Component {
           <Grid.Column>
             <div className="ui two column container grid">
               <div className="column">
-                <h2 class="ui header">
-                  <i class="circle outline icon"></i>
-                  <div class="content">
+                <h2 className="ui header">
+                  <i className="circle outline icon"></i>
+                  <div className="content">
                     Focus-2
-                    <div class="sub header">Activity Assistant</div>
+                    <div className="sub header">Activity Assistant</div>
                   </div>
                 </h2>
                 {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
@@ -104,8 +104,11 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
-          </Grid.Column>
+            <div className="ui message red container">
+                  The data is stored locally in your browser only! You need to open this app in your favorite browser not to lose data!
+            </div>
 
+          </Grid.Column>
           <Grid.Column>
             <Sidebar.Pushable as={Segment}>
               <Sidebar
