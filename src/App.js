@@ -105,7 +105,7 @@ class App extends React.Component {
               </div>
             </div>
             <div className="ui message red container">
-                  The data is stored locally only. To use this app, open it in your favorite browser consistently not to lose data!
+                  The data is stored locally in this particular browser only. To use this app, open it in your favorite browser consistently not to lose data!
             </div>
 
           </Grid.Column>
