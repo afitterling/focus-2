@@ -1,5 +1,4 @@
-export const Dimensions = [
-
+const rawDims = [
     {id: 'leisure', name: 'Leisure'},
     {id: 'goal', name: 'Life Goal'},
     {id: 'urgent', name: 'Urgent'},
@@ -17,6 +16,28 @@ export const Dimensions = [
     {id: 'balance', name: 'Life Balance'},
     {id: 'family', name: 'Family'},
     {id: 'social', name: 'Social'}
-
 ];
 
+const groups = [
+    { id: 'general', name: 'Default', groupUnder: ['leisure'] }
+];
+
+const enhanceDimsWithGroups = (dims, groups) => { 
+    const dimsWithGroups = dims.map(d => { 
+        Object.assign(d, {groups: []});
+        groups.forEach(g => {  
+            if (g.groupUnder.find(gu => gu === d.id)){
+                d.groups=[...d.groups, d.id];
+            }
+        });
+        return d;
+    });
+    debugger;
+    return dimsWithGroups;
+};
+
+export const Dimensions = [
+    ...enhanceDimsWithGroups(rawDims, groups)
+];
+
+export const Groups = groups;
