@@ -88,7 +88,7 @@ export class Items extends React.Component {
 
     onFocusFilterDate(items){
         if (this.props.focusActive){
-            return items.filter(i => moment().diff(moment(i.dateRaw), 'days') === 0 || i.focus);
+            return items.filter(i => moment(i.dateRaw).diff(moment(), 'hours') < 6);
         }
         return items;
     }
