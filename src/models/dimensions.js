@@ -32,7 +32,6 @@ const enhanceDimsWithGroups = (dims, groups) => {
         });
         return d;
     });
-    debugger;
     return dimsWithGroups;
 };
 
