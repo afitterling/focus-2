@@ -102,9 +102,11 @@ export class Items extends React.Component {
                         onCellClick={this.onCellClick}
                         onDelete={this.props.onItemDelete}
                         sorterFns={[this.ascSorter('dateRaw'), this.sorterNumericDesc('progress')]}
-                        items={this.onFocusFilterDate(this.props.items.filter(i => {
-                            return i.inProgress;
-                        }))}>
+                        items={()=>{
+                            return this.props.items.filter(i => {
+                                return i.inProgress;
+                            });
+                        }}>
                     </GenericTable> : null
                 }
 
