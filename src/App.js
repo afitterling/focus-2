@@ -19,7 +19,7 @@ class App extends PureComponent {
   constructor(props) {
     super(props);   
     const fdims = {};
-    console.log('props', props);
+    console.log('appProps', props);
     dims.forEach(i => fdims[i.id] = 0);
     this.state = {
       items: [],
@@ -65,13 +65,6 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    //const items = Repository.getItems();
-    const userId = JSON.parse(localStorage.getItem('userId')) || uuidv4();
-    // set a uuid if it is not there
-    localStorage.setItem('userId', JSON.stringify(userId));
-    //this.setState({
-//      items: items
-    //});
   }
 
   toggleNew = () => {
@@ -203,7 +196,7 @@ class App extends PureComponent {
                         <Dimensions items={this.props.items}></Dimensions>
                       </Route>
                       <Route path="/settings">
-                        <Settings></Settings>
+                        <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
                         {dims.map(dim => {
@@ -241,7 +234,7 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({items: state.items});
+const mapStateToProps = state => ({items: state.items, userId: state.userId});
 /*const mapDispatchToProps = {
   addItem
 }*/

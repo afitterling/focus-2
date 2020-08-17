@@ -13,6 +13,7 @@ export default function configureStore(initialState={}, history){
     const store = createStore(
         createReducer({
             items,
+            userId: (state=null)=>{return state}
         }),
         //fromJS(initialState),
         initialState,

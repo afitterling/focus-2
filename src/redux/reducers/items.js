@@ -3,11 +3,9 @@ import {
     ITEM_RM,
     ITEM_UPDATE
 } from '../actionTypes';
-import { List } from 'immutable';
+//import { List } from 'immutable';
 
-let initialState = List();
-
-export default function items(state = initialState, action){
+export default function items(state = [], action){
     switch (action.type) {
         case ITEM_ADD:
             return [...state, action.data];
