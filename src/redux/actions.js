@@ -1,5 +1,11 @@
 // redux/actions.js
-import { ADD_TODO } from './actionTypes'
+import { 
+  ADD_TODO,
+
+  FILTER_FOCUS_TURN_ON,
+  FILTER_FOCUS_TURN_OFF,
+  FILTER_FOCUS_TOGGLE
+} from './actionTypes'
 
 let nextTodoId = 0
 export const addTodo = content => ({
@@ -9,3 +15,7 @@ export const addTodo = content => ({
     content
   }
 })
+
+export const toggleFilterFocus = () => {
+
+}

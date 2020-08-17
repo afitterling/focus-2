@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
@@ -12,7 +12,8 @@ import RatingExampleControlled from './components/rating';
 import { RadarChart as Radar } from './components/graphs/radar';
 import Repository from './services/repository';
 
-class App extends React.Component {
+
+class App extends PureComponent {
 
 
   constructor() {

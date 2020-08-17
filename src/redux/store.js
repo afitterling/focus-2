@@ -1,9 +1,13 @@
-import { createStore } from 'redux';
+import { createStore, /* applyMiddleware, compose */ } from 'redux';
 
-const store = createStore(
-    () => {},
-    window.__REDUX_DEVTOOLS_EXTENSION__ && 
-    window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+//import { tubeLight } from './reducers/tubeLight';
+import createReducer from './reducers/root';
 
-export default store
+export default function configureStore(initialState={}, history){
+    const store = createStore(
+        createReducer(),
+    );
+
+    store.injectedReducers = {}
+    return store;
+};

@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-import store from './redux/store'
+import configureStore from './redux/store'
+import history from './utils/history';
+
+const initialState ={}
+const store = configureStore(initialState, history);
 
 ReactDOM.render(
   //<React.StrictMode>
