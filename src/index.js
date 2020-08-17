@@ -21,9 +21,6 @@ const store = configureStore(initialState, history);
 store.subscribe(()=>{
   console.log('newSate', store.getState());
 });
-setTimeout(()=>{
-  store.dispatch({type: 'ITEM_ADD', data: {id: 3, 'title': 'sdfsdfdf'}});
-}, 5000);
 
 /*
 store.dispatch({type: 'ITEM_ADD', data: {id: '1', title: 'title1'}});
