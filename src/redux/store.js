@@ -1,5 +1,5 @@
 import { createStore, /* applyMiddleware, compose */ } from 'redux';
-import { fromJS } from 'immutable';
+//import { fromJS } from 'immutable';
 import items from './reducers/items';
 
 //import { tubeLight } from './reducers/tubeLight';
@@ -15,7 +15,8 @@ export default function configureStore(initialState={}, history){
         createReducer({
             items,
         }),
-        fromJS(initialState),
+        //fromJS(initialState),
+        initialState,
         //composedEnhancers
     );
 

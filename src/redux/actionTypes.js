@@ -3,3 +3,5 @@ export const FILTER_FOCUS_TURN_OFF = 'FILTER_FOCUS_TURN_OFF';
 export const FILTER_FOCUS_TOGGLE = 'FILTER_FOCUS_TURN_TOGGLE';
 
 export const ITEM_ADD = 'ITEM_ADD';
+export const ITEM_RM = 'ITEM_RM';
+export const ITEM_UPDATE = 'ITEM_UPDATE';

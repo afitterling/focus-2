@@ -12,18 +12,14 @@ import RatingExampleControlled from './components/rating';
 import { RadarChart as Radar } from './components/graphs/radar';
 import Repository from './services/repository';
 import { connect } from 'react-redux';
-import { ITEM_ADD } from './redux/actionTypes';
+import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
 
 class App extends PureComponent {
 
-
   constructor(props) {
     super(props);   
-    this.props.store.subscribe(()=>{
-      console.log(this.props.store.getState());
-    })
-    this.props.store.dispatch({type: ITEM_ADD, data: {}});
     const fdims = {};
+    console.log('props', props);
     dims.forEach(i => fdims[i.id] = 0);
     this.state = {
       items: [],
@@ -37,14 +33,16 @@ class App extends PureComponent {
   onAdd = (formParams) => {
     const newItem = { id: uuidv4(), ...formParams };
     console.log(newItem);
-    this.setState({ items: [...this.state.items, newItem] });
-    localStorage.setItem('items', JSON.stringify([...this.state.items, newItem]));
+    //this.setState({ items: [...this.state.items, newItem] });
+    localStorage.setItem('items', JSON.stringify([...this.props.items, newItem]));
+    //addItem(newItem);
+    this.props.dispatch({type: ITEM_ADD, data: newItem});
     this.setState({ showNewForm: false });
-    this.setState({ values: [...this.state.values, newItem] });
+    // obsolete? this.setState({ values: [...this.state.values, newItem] });
   }
 
   onUpdate = (formParams) => {
-    const updatedItems = [...this.state.items.map(
+    const updatedItems = [...this.props.items.map(
       i => {
         if (i.id === formParams.id) {
           return { ...formParams };
@@ -53,27 +51,28 @@ class App extends PureComponent {
         }
       }
     )];
-    this.setState({ items: updatedItems });
+    //this.setState({ items: updatedItems });
+    this.props.dispatch({type: 'ITEM_UPDATE', data: formParams});
     localStorage.setItem('items', JSON.stringify([...updatedItems]));
     return true;
   }
 
   onDeleteItem = (id) => () => {
-    const items = this.state.items.filter(i => i.id !== id);
-    this.setState({ items: items });
+    this.props.dispatch({type: ITEM_RM, id});
+    const items = this.props.items.filter(i => i.id !== id);
+//    this.setState({ items: items });
     Repository.saveItems(items);
   }
 
   componentDidMount() {
-    const items = Repository.getItems();
+    //const items = Repository.getItems();
     const userId = JSON.parse(localStorage.getItem('userId')) || uuidv4();
     // set a uuid if it is not there
     localStorage.setItem('userId', JSON.stringify(userId));
-    this.setState({
-      items: items
-    });
+    //this.setState({
+//      items: items
+    //});
   }
-
 
   toggleNew = () => {
     this.setState({ showNewForm: true });
@@ -195,13 +194,13 @@ class App extends PureComponent {
                   <div className="ui container">
                     <Switch>
                       <Route exact path="/">
-                        <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+                        <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
                       </Route>
                       <Route path="/focus">
-                        <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.state.items}></Items>
+                        <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
                       </Route>
                       <Route path="/dimensions">
-                        <Dimensions items={this.state.items}></Dimensions>
+                        <Dimensions items={this.props.items}></Dimensions>
                       </Route>
                       <Route path="/settings">
                         <Settings></Settings>
@@ -217,7 +216,7 @@ class App extends PureComponent {
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.state.items, this.state.filterDimensions, congruentMatcher)}></Items>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
-                        })} values={filterItems(this.state.items, this.state.filterDimensions, congruentMatcher).map(i => {
+                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
                           return {
                             key: i.id,
                             label: i.title,
@@ -242,5 +241,11 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({ ...state.items});
-export default connect(mapStateToProps)(App);
+const mapStateToProps = state => ({items: state.items});
+/*const mapDispatchToProps = {
+  addItem
+}*/
+export default connect(
+    mapStateToProps,
+    //mapDispatchToProps
+  )(App);
