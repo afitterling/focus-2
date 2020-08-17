@@ -77,7 +77,6 @@ class App extends React.Component {
 
   onfilterDimChange = (id) => {
     const state = this.state.filterDimensions;
-    console.log(state);
     return (v) => {
       state[id] = v;
       this.setState({ filterDimensions: state });
