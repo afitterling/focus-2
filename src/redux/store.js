@@ -2,7 +2,6 @@ import { createStore, /* applyMiddleware, compose */ } from 'redux';
 //import { fromJS } from 'immutable';
 import items from './reducers/items';
 
-//import { tubeLight } from './reducers/tubeLight';
 import createReducer from './reducers/root';
 
 /*
