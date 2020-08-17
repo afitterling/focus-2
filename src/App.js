@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
@@ -14,7 +14,7 @@ import Repository from './services/repository';
 import { connect } from 'react-redux';
 import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
 
-class App extends PureComponent {
+class App extends React.Component {
 
   constructor(props) {
     super(props);   
@@ -77,6 +77,7 @@ class App extends PureComponent {
 
   onfilterDimChange = (id) => {
     const state = this.state.filterDimensions;
+    console.log(state);
     return (v) => {
       state[id] = v;
       this.setState({ filterDimensions: state });
