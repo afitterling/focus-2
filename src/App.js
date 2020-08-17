@@ -58,6 +58,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const items = JSON.parse(localStorage.getItem('items')) || [];
+    const userId = JSON.parse(localStorage.getItem('userId')) || uuidv4();
+    // set a uuid if it is not there
+    localStorage.setItem('userId', JSON.stringify(userId));
     this.setState({
       items: items
     });
