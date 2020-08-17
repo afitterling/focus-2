@@ -3,11 +3,15 @@ class Repository {
 
     //constructor(){}
 
-    saveItems(item){
-        console.log(item);
+    saveItems(items){
+        localStorage.setItem('items', JSON.stringify([...items]));
     }
 
-    deleteItems(){}
+    getItems(){
+        const items = JSON.parse(localStorage.getItem('items')) || [];
+        return items;
+    }
+
 }
 
 export default new Repository();

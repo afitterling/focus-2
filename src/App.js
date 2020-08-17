@@ -5,10 +5,12 @@ import { Items } from './pages/items';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar, Form } from 'semantic-ui-react'
 import { Dimensions } from './pages/dimensions';
+import { Settings } from './pages/settings';
 import { Dimensions as dims } from './models/dimensions';
 import { congruentMatcher, filterItems } from './pages/assistant';
 import RatingExampleControlled from './components/rating';
 import { RadarChart as Radar } from './components/graphs/radar';
+import Repository from './services/repository';
 
 class App extends React.Component {
 
@@ -53,11 +55,11 @@ class App extends React.Component {
   onDeleteItem = (id) => () => {
     const items = this.state.items.filter(i => i.id !== id);
     this.setState({ items: items });
-    localStorage.setItem('items', JSON.stringify([...items]));
+    Repository.saveItems(items);
   }
 
   componentDidMount() {
-    const items = JSON.parse(localStorage.getItem('items')) || [];
+    const items = Repository.getItems();
     const userId = JSON.parse(localStorage.getItem('userId')) || uuidv4();
     // set a uuid if it is not there
     localStorage.setItem('userId', JSON.stringify(userId));
@@ -168,6 +170,18 @@ class App extends React.Component {
                     Dimensions
                   </Menu.Item>
                 </Link>
+                <Link to="/settings">
+                  <Menu.Item
+                    name='settings'
+                    as='li'
+                    active={this.state.activeItem === 'settings'}
+                    onClick={this.menuItemClick}
+                  >
+                    <Icon name='settings' />
+                    Settings
+                  </Menu.Item>
+                </Link>
+
               </Sidebar>
 
               <Sidebar.Pusher dimmed={this.state.visible}>
@@ -182,6 +196,9 @@ class App extends React.Component {
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.state.items}></Dimensions>
+                      </Route>
+                      <Route path="/settings">
+                        <Settings></Settings>
                       </Route>
                       <Route path="/assistant">
                         {dims.map(dim => {
