@@ -7,13 +7,19 @@ import { Provider } from 'react-redux'
 import configureStore from './redux/store'
 import history from './utils/history';
 
-const initialState ={}
+const initialState ={
+  items: []
+}
+
 const store = configureStore(initialState, history);
+
+store.dispatch({type: 'ITEM_ADD', data: {title: 'title1'}});
+//console.log(store.getState());
 
 ReactDOM.render(
   //<React.StrictMode>
   <Provider store={store}>
-    <App />
+    <App store={store}/>
   </Provider>,
   //</React.StrictMode>,
   document.getElementById('root')
@@ -23,3 +29,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+

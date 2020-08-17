@@ -11,13 +11,18 @@ import { congruentMatcher, filterItems } from './pages/assistant';
 import RatingExampleControlled from './components/rating';
 import { RadarChart as Radar } from './components/graphs/radar';
 import Repository from './services/repository';
-
+import { connect } from 'react-redux';
+import { ITEM_ADD } from './redux/actionTypes';
 
 class App extends PureComponent {
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);   
+    this.props.store.subscribe(()=>{
+      console.log(this.props.store.getState());
+    })
+    this.props.store.dispatch({type: ITEM_ADD, data: {}});
     const fdims = {};
     dims.forEach(i => fdims[i.id] = 0);
     this.state = {
@@ -237,4 +242,5 @@ class App extends PureComponent {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({ ...state.items});
+export default connect(mapStateToProps)(App);
