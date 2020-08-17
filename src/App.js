@@ -206,7 +206,7 @@ class App extends PureComponent {
                             </Form.Field>
                           );
                         })}
-                        <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.state.items, this.state.filterDimensions, congruentMatcher)}></Items>
+                        <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
