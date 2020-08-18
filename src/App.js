@@ -209,7 +209,7 @@ class App extends React.Component {
                         <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
-                        <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className="icon plus"></i> Filter</button>
+                        <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={ this.state.showDim ? 'icon minus' : 'icon plus'}></i> Filter</button>
                         <div className="ui container">
 
                           {this.state.showDim ?
