@@ -191,7 +191,7 @@ class App extends React.Component {
                       </Route>
  */}                      <Route exact path="/">
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.focus)}></Items>
-                        <Radar variables={dims.map(i => {
+{/*                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={this.props.items.filter(i => i.focus).map(i => {
                           return {
@@ -200,7 +200,7 @@ class App extends React.Component {
                             values: i.dimensions
                           }
                         })}></Radar>
-
+ */}
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.props.items}></Dimensions>
@@ -209,7 +209,8 @@ class App extends React.Component {
                         <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
-                        <button className="ui secondary button" onClick={()=>{this.setState({showDim: !this.state.showDim})}}><i className="icon plus"></i> Filter</button>
+                        <button style={{marginBottom: '10px'}} className="ui secondary button" onClick={()=>{this.setState({showDim: !this.state.showDim})}}><i className="icon plus"></i> Filter</button>
+
                         { this.state.showDim ?
                         dims.map(dim => {
                           return (
