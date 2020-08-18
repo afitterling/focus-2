@@ -17,7 +17,7 @@ import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
 class App extends React.Component {
 
   constructor(props) {
-    super(props);   
+    super(props);
     const fdims = {};
     console.log('appProps', props);
     dims.forEach(i => fdims[i.id] = 0);
@@ -36,7 +36,7 @@ class App extends React.Component {
     //this.setState({ items: [...this.state.items, newItem] });
     localStorage.setItem('items', JSON.stringify([...this.props.items, newItem]));
     //addItem(newItem);
-    this.props.dispatch({type: ITEM_ADD, data: newItem});
+    this.props.dispatch({ type: ITEM_ADD, data: newItem });
     this.setState({ showNewForm: false });
     // obsolete? this.setState({ values: [...this.state.values, newItem] });
   }
@@ -52,15 +52,15 @@ class App extends React.Component {
       }
     )];
     //this.setState({ items: updatedItems });
-    this.props.dispatch({type: 'ITEM_UPDATE', data: formParams});
+    this.props.dispatch({ type: 'ITEM_UPDATE', data: formParams });
     localStorage.setItem('items', JSON.stringify([...updatedItems]));
     return true;
   }
 
   onDeleteItem = (id) => () => {
-    this.props.dispatch({type: ITEM_RM, id});
+    this.props.dispatch({ type: ITEM_RM, id });
     const items = this.props.items.filter(i => i.id !== id);
-//    this.setState({ items: items });
+    //    this.setState({ items: items });
     Repository.saveItems(items);
   }
 
@@ -108,7 +108,7 @@ class App extends React.Component {
               </div>
             </div>
             <div className="ui message red container">
-                  The data is stored locally in this particular browser only. To use this app, open it in your favorite browser consistently not to lose data!
+              The data is stored locally in this particular browser only. To use this app, open it in your favorite browser consistently not to lose data!
             </div>
 
           </Grid.Column>
@@ -134,7 +134,7 @@ class App extends React.Component {
                     Focus
                   </Menu.Item>
                 </Link>
-{/*                 <Link to="/">
+                {/*                 <Link to="/">
                   <Menu.Item
                     name='all'
                     as='li'
@@ -186,12 +186,12 @@ class App extends React.Component {
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
-{/*                       <Route exact path="/">
+                      {/*                       <Route exact path="/">
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
                       </Route>
  */}                      <Route exact path="/">
                         <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.focus)}></Items>
-{/*                         <Radar variables={dims.map(i => {
+                        {/*                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={this.props.items.filter(i => i.focus).map(i => {
                           return {
@@ -209,17 +209,19 @@ class App extends React.Component {
                         <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
-                        <button style={{marginBottom: '10px'}} className="ui secondary button" onClick={()=>{this.setState({showDim: !this.state.showDim})}}><i className="icon plus"></i> Filter</button>
+                        <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className="icon plus"></i> Filter</button>
+                        <div className="ui container">
 
-                        { this.state.showDim ?
-                        dims.map(dim => {
-                          return (
-                            <Form.Field key={dim.id}>
-                              <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
-                            </Form.Field>
-                          );
-                        }) : null
-                        }
+                          {this.state.showDim ?
+                            dims.map(dim => {
+                              return (
+                                <Form.Field key={dim.id}>
+                                  <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
+                                </Form.Field>
+                              );
+                            }) : null
+                          }
+                        </div>
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
@@ -248,11 +250,11 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({items: state.items, userId: state.userId});
+const mapStateToProps = state => ({ items: state.items, userId: state.userId });
 /*const mapDispatchToProps = {
   addItem
 }*/
 export default connect(
-    mapStateToProps,
-    //mapDispatchToProps
-  )(App);
+  mapStateToProps,
+  //mapDispatchToProps
+)(App);
