@@ -123,7 +123,7 @@ class App extends React.Component {
                 visible={this.state.visible}
                 width='thin'
               >
-                <Link to="/focus">
+                <Link to="/">
                   <Menu.Item
                     name='focus'
                     as='li'
@@ -134,7 +134,7 @@ class App extends React.Component {
                     Focus
                   </Menu.Item>
                 </Link>
-                <Link to="/">
+{/*                 <Link to="/">
                   <Menu.Item
                     name='all'
                     as='li'
@@ -145,7 +145,7 @@ class App extends React.Component {
                     Activities
                   </Menu.Item>
                 </Link>
-                {/*                 <Link to="/dimensions">
+ */}                {/*                 <Link to="/dimensions">
                   <Menu.Item
                     name='dimensions'
                     as='li'
@@ -186,11 +186,21 @@ class App extends React.Component {
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
-                      <Route exact path="/">
+{/*                       <Route exact path="/">
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
                       </Route>
-                      <Route path="/focus">
-                        <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
+ */}                      <Route exact path="/">
+                        <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.focus)}></Items>
+                        <Radar variables={dims.map(i => {
+                          return { key: i.id, label: i.name };
+                        })} values={this.props.items.filter(i => i.focus).map(i => {
+                          return {
+                            key: i.id,
+                            label: i.title,
+                            values: i.dimensions
+                          }
+                        })}></Radar>
+
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.props.items}></Dimensions>
@@ -199,13 +209,16 @@ class App extends React.Component {
                         <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
-                        {dims.map(dim => {
+                        <button className="ui secondary button" onClick={()=>{this.setState({showDim: !this.state.showDim})}}><i className="icon braille"></i> Filter</button>
+                        { this.state.showDim ?
+                        dims.map(dim => {
                           return (
                             <Form.Field key={dim.id}>
                               <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
                             </Form.Field>
                           );
-                        })}
+                        }) : null
+                        }
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
