@@ -209,7 +209,7 @@ class App extends React.Component {
                         <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
-                        <button className="ui secondary button" onClick={()=>{this.setState({showDim: !this.state.showDim})}}><i className="icon braille"></i> Filter</button>
+                        <button className="ui secondary button" onClick={()=>{this.setState({showDim: !this.state.showDim})}}><i className="icon plus"></i> Filter</button>
                         { this.state.showDim ?
                         dims.map(dim => {
                           return (
