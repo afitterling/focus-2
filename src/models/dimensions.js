@@ -11,6 +11,7 @@ const rawDims = [
     {id: 'learn', name: 'Learning'},
     {id: 'life', name: 'Life'},
     {id: 'health', name: 'Health'},
+    {id: 'phyact', name: 'Physical Activity'},
     {id: 'alleviate', name: 'Psychol. Wellbeing'},
     {id: 'emergency', name: 'Emergency'},
     {id: 'balance', name: 'Life Balance'},
