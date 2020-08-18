@@ -165,7 +165,7 @@ class App extends React.Component {
                     onClick={this.menuItemClick}
                   >
                     <Icon name='braille' />
-                    Dimensions
+                    Assistant
                   </Menu.Item>
                 </Link>
                 <Link to="/settings">
