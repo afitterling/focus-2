@@ -210,6 +210,9 @@ class App extends React.Component {
                       </Route>
                       <Route path="/assistant">
                         <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={ this.state.showDim ? 'icon minus' : 'icon plus'}></i> Filter</button>
+                        { 
+                          !!this.state.filterDimensions ? <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { window.location.reload() }}><i className="icon trash"></i></button> : null
+                        }                        
                         <div className="ui container">
 
                           {this.state.showDim ?
