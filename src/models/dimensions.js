@@ -20,16 +20,16 @@ const rawDims = [
 ];
 
 export const groups = [
-    { id: 'importance', name: 'Importance', groupUnder: ['urgent', 'important', 'emergency', 'leisure', 'life', 'goal'] },
-    { id: 'main', name: 'Well-being', groupUnder: ['alleviate', 'balance', 'leisure', 'life', 'social', 'family', 'health'] },
-    { id: 'type3', name: 'Fields of Activities', groupUnder: ['it', 'work', 'sustain', 'jobsearch', 'life', 'finance' , 'family', 'learn'] }
+    { id: 'importance', name: 'Importance', dims: ['urgent', 'important', 'emergency', 'leisure', 'life', 'goal'] },
+    { id: 'main', name: 'Well-being', dims: ['alleviate', 'balance', 'leisure', 'life', 'social', 'family', 'health'] },
+    { id: 'type3', name: 'Fields of Activities', dims: ['work', 'sustain', 'jobsearch', 'life', 'finance' , 'family', 'learn'] }
 ];
 
 const enhanceDimsWithGroups = (dims, groups) => { 
     const dimsWithGroups = dims.map(d => { 
         Object.assign(d, {groups: []});
         groups.forEach(g => {  
-            if (g.groupUnder.find(gu => gu === d.id)){
+            if (g.dims.find(gu => gu === d.id)){
                 d.groups=[...d.groups, g.id];
             }
         });
