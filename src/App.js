@@ -201,6 +201,26 @@ class App extends React.Component {
                           }
                         })}></Radar>
 
+{
+                          groups.map(grp => {
+                            return (
+                              <React.Fragment key={grp.id}>
+                                <h2>{grp.name}</h2>
+                                <Radar variables={dims.filter(d => d.groups.find(g => g === grp.id)).map(i => {
+                                  return { key: i.id, label: i.name };
+                                })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
+                                  return {
+                                    key: i.id,
+                                    label: i.title,
+                                    values: i.dimensions
+                                  }
+                                })}></Radar>
+                              </React.Fragment>
+                            );
+                          })
+                        }
+
+
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.props.items}></Dimensions>
