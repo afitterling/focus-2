@@ -191,6 +191,7 @@ class App extends React.Component {
                       </Route>
  */}                      <Route exact path="/">
                         <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.focus)}></Items>
+                        <h2>All</h2>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={this.props.items.filter(i => i.focus).map(i => {
@@ -246,6 +247,7 @@ class App extends React.Component {
                         </div>
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
 
+                        <h2>All</h2>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
