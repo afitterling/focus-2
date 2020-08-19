@@ -157,7 +157,11 @@ export class ItemForm extends React.Component {
             <RatingExampleControlled value={this.state.form.progress} onChange={this.onProgressChange} name={'Progress'}></RatingExampleControlled>
           </Form.Field>
 
-          <h2>Dimensions</h2>
+
+          <button type="button" style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={this.state.showDim ? 'icon minus' : 'icon plus'}></i> Dimensions</button><br/>
+
+          {this.state.showDim ?
+            <div className="ui container">
           {dims.map( dim => {            
             return (
               <Form.Field key={dim.id}>
@@ -165,6 +169,9 @@ export class ItemForm extends React.Component {
               </Form.Field>
             );
           })}
+            </div>
+           : null
+          }
 
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
