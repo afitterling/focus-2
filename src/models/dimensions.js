@@ -12,7 +12,7 @@ const rawDims = [
     {id: 'life', name: 'Life'},
     {id: 'health', name: 'Health'},
     {id: 'phyact', name: 'Physical Activity'},
-    {id: 'alleviate', name: 'Psychol. Wellbeing'},
+    {id: 'alleviate', name: 'Psy. Wellbeing'},
     {id: 'emergency', name: 'Emergency'},
     {id: 'balance', name: 'Life Balance'},
     {id: 'family', name: 'Family'},
@@ -20,9 +20,10 @@ const rawDims = [
 ];
 
 const groups = [
-    { id: 'type1', name: 'Default', groupUnder: ['leisure', 'work', 'life', 'family'] },
-    { id: 'type2', name: 'Default', groupUnder: ['urgent', 'important', 'goal', 'emergency'] },
-    { id: 'type3', name: 'Default', groupUnder: ['it', 'jobsearch', 'life', 'family'] }
+    { id: 'main', name: 'Default', groupUnder: ['alleviate', 'balance', 'leisure', 'life', 'family', 'social', 'health', 'learn'] },
+    { id: 'type1', name: 'Default', groupUnder: ['leisure', 'balance', 'work', 'sustain', 'life', 'family'] },
+    { id: 'type2', name: 'Default', groupUnder: ['urgent', 'important', 'sustain', 'goal', 'emergency'] },
+    { id: 'type3', name: 'Default', groupUnder: ['it', 'jobsearch', 'life', 'finance' ,'family'] }
 ];
 
 const enhanceDimsWithGroups = (dims, groups) => { 

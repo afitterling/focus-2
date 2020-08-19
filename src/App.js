@@ -236,6 +236,15 @@ class App extends React.Component {
                           }
                         })}></Radar>
 
+                        <Radar variables={dims.filter(d => d.groups.find(g => g==='main')).map(i => {
+                          return { key: i.id, label: i.name };
+                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
+                          return {
+                            key: i.id,
+                            label: i.title,
+                            values: i.dimensions
+                          }
+                        })}></Radar>
                         <Radar variables={dims.filter(d => d.groups.find(g => g==='type1')).map(i => {
                           return { key: i.id, label: i.name };
                         })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
