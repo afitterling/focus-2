@@ -20,6 +20,7 @@ const rawDims = [
 ];
 
 const groups = [
+    { id: 'importance', name: 'Default', groupUnder: ['urgent', 'important', 'leisure', 'life', 'goal'] },
     { id: 'main', name: 'Default', groupUnder: ['alleviate', 'balance', 'leisure', 'life', 'family', 'social', 'health', 'learn'] },
     { id: 'type1', name: 'Default', groupUnder: ['leisure', 'balance', 'work', 'sustain', 'life', 'family'] },
     { id: 'type2', name: 'Default', groupUnder: ['urgent', 'important', 'sustain', 'goal', 'emergency'] },

@@ -226,7 +226,18 @@ class App extends React.Component {
                           }
                         </div>
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
+                        
                         <Radar variables={dims.map(i => {
+                          return { key: i.id, label: i.name };
+                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
+                          return {
+                            key: i.id,
+                            label: i.title,
+                            values: i.dimensions
+                          }
+                        })}></Radar>
+
+                        <Radar variables={dims.filter(d => d.groups.find(g => g==='importance')).map(i => {
                           return { key: i.id, label: i.name };
                         })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
                           return {
@@ -245,6 +256,7 @@ class App extends React.Component {
                             values: i.dimensions
                           }
                         })}></Radar>
+
                         <Radar variables={dims.filter(d => d.groups.find(g => g==='type1')).map(i => {
                           return { key: i.id, label: i.name };
                         })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
