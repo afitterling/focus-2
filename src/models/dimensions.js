@@ -20,7 +20,9 @@ const rawDims = [
 ];
 
 const groups = [
-    { id: 'general', name: 'Default', groupUnder: ['leisure'] }
+    { id: 'type1', name: 'Default', groupUnder: ['leisure', 'work', 'life', 'family'] },
+    { id: 'type2', name: 'Default', groupUnder: ['urgent', 'important', 'goal', 'emergency'] },
+    { id: 'type3', name: 'Default', groupUnder: ['it', 'jobsearch', 'life', 'family'] }
 ];
 
 const enhanceDimsWithGroups = (dims, groups) => { 
@@ -28,7 +30,7 @@ const enhanceDimsWithGroups = (dims, groups) => {
         Object.assign(d, {groups: []});
         groups.forEach(g => {  
             if (g.groupUnder.find(gu => gu === d.id)){
-                d.groups=[...d.groups, d.id];
+                d.groups=[...d.groups, g.id];
             }
         });
         return d;
