@@ -172,7 +172,6 @@ export class ItemForm extends React.Component {
             </div>
            : null
           }
-
           <Button type="button" className="button" onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit" 
             content="save"
