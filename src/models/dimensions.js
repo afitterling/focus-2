@@ -21,7 +21,7 @@ const rawDims = [
 
 export const groups = [
     { id: 'importance', name: 'Importance', dims: ['urgent', 'important', 'emergency', 'leisure', 'life', 'goal'] },
-    { id: 'main', name: 'Well-being', dims: ['alleviate', 'balance', 'leisure', 'life', 'social', 'family', 'health'] },
+    { id: 'main', name: 'Well-Being', dims: ['alleviate', 'balance', 'leisure', 'life', 'social', 'family', 'health'] },
     { id: 'type3', name: 'Fields of Activities', dims: ['work', 'sustain', 'jobsearch', 'life', 'family', 'learn'] }
 ];
 

@@ -190,7 +190,7 @@ class App extends React.Component {
                         <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
                       </Route>
  */}                      <Route exact path="/">
-                        <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.focus)}></Items>
+                        <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
                         <h2>All</h2>
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };

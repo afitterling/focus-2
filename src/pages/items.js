@@ -87,10 +87,7 @@ export class Items extends React.Component {
     }
 
     onFocusFilterDate(items){
-        if (this.props.focusActive){
-            return items.filter(i => moment(i.dateRaw).diff(moment(), 'hours') < 6);
-        }
-        return items;
+        return items.filter(i => i.dateRaw).filter(i => moment(i.dateRaw).diff(moment(), 'hours') < 6);
     }
 
     render() {
@@ -111,10 +108,9 @@ export class Items extends React.Component {
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.ascSorter('dateRaw'), this.sorterNumericDesc('progress')]}
-                    items={this.onFocusFilterDate(this.props.items.filter(i => {
-                        return !!i.date;
-                    }))}>
+                    items={this.props.focusActive ? this.onFocusFilterDate(this.props.items) : this.props.items}>
                 </GenericTable>
+                
                 <GenericTable title={['Pending', '']}
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
