@@ -6,7 +6,7 @@ import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar, Form } from 'semantic-ui-react'
 import { Dimensions } from './pages/dimensions';
 import { Settings } from './pages/settings';
-import { Dimensions as dims } from './models/dimensions';
+import { Dimensions as dims, groups } from './models/dimensions';
 import { congruentMatcher, filterItems } from './pages/assistant';
 import RatingExampleControlled from './components/rating';
 import { RadarChart as Radar } from './components/graphs/radar';
@@ -191,7 +191,7 @@ class App extends React.Component {
                       </Route>
  */}                      <Route exact path="/">
                         <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.focus)}></Items>
-                                                 <Radar variables={dims.map(i => {
+                        <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={this.props.items.filter(i => i.focus).map(i => {
                           return {
@@ -200,7 +200,7 @@ class App extends React.Component {
                             values: i.dimensions
                           }
                         })}></Radar>
- 
+
                       </Route>
                       <Route path="/dimensions">
                         <Dimensions items={this.props.items}></Dimensions>
@@ -209,10 +209,10 @@ class App extends React.Component {
                         <Settings userId={this.props.userId}></Settings>
                       </Route>
                       <Route path="/assistant">
-                        <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={ this.state.showDim ? 'icon minus' : 'icon plus'}></i> Filter</button>
-                        { 
+                        <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={this.state.showDim ? 'icon minus' : 'icon plus'}></i> Filter</button>
+                        {
                           !!this.state.filterDimensions ? <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { window.location.reload() }}><i className="icon trash"></i></button> : null
-                        }                        
+                        }
                         <div className="ui container">
 
                           {this.state.showDim ?
@@ -226,7 +226,7 @@ class App extends React.Component {
                           }
                         </div>
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
-                        
+
                         <Radar variables={dims.map(i => {
                           return { key: i.id, label: i.name };
                         })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
@@ -237,55 +237,24 @@ class App extends React.Component {
                           }
                         })}></Radar>
 
-                        <Radar variables={dims.filter(d => d.groups.find(g => g==='importance')).map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
-
-                        <Radar variables={dims.filter(d => d.groups.find(g => g==='main')).map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
-
-                        <Radar variables={dims.filter(d => d.groups.find(g => g==='type1')).map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
-
-                        <Radar variables={dims.filter(d => d.groups.find(g => g==='type2')).map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
-
-                        <Radar variables={dims.filter(d => d.groups.find(g => g==='type3')).map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
+                        {
+                          groups.map(grp => {
+                            return (
+                              <React.Fragment key={grp.id}>
+                                <h2>{grp.name}</h2>
+                                <Radar variables={dims.filter(d => d.groups.find(g => g === grp.id)).map(i => {
+                                  return { key: i.id, label: i.name };
+                                })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
+                                  return {
+                                    key: i.id,
+                                    label: i.title,
+                                    values: i.dimensions
+                                  }
+                                })}></Radar>
+                              </React.Fragment>
+                            );
+                          })
+                        }
 
                       </Route>
                     </Switch>

@@ -19,12 +19,10 @@ const rawDims = [
     {id: 'social', name: 'Social'}
 ];
 
-const groups = [
-    { id: 'importance', name: 'Default', groupUnder: ['urgent', 'important', 'leisure', 'life', 'goal'] },
-    { id: 'main', name: 'Default', groupUnder: ['alleviate', 'balance', 'leisure', 'life', 'family', 'social', 'health', 'learn'] },
-    { id: 'type1', name: 'Default', groupUnder: ['leisure', 'balance', 'work', 'sustain', 'life', 'family'] },
-    { id: 'type2', name: 'Default', groupUnder: ['urgent', 'important', 'sustain', 'goal', 'emergency'] },
-    { id: 'type3', name: 'Default', groupUnder: ['it', 'jobsearch', 'life', 'finance' ,'family'] }
+export const groups = [
+    { id: 'importance', name: 'Importance', groupUnder: ['urgent', 'important', 'leisure', 'life', 'goal'] },
+    { id: 'main', name: 'Group 2', groupUnder: ['alleviate', 'balance', 'leisure', 'life', 'family', 'social', 'health', 'learn'] },
+    { id: 'type3', name: 'Group 3', groupUnder: ['it', 'work', 'jobsearch', 'life', 'finance' ,'family'] }
 ];
 
 const enhanceDimsWithGroups = (dims, groups) => { 
