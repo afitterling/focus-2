@@ -3,7 +3,7 @@ const rawDims = [
     {id: 'goal', name: 'Life Goal'},
     {id: 'urgent', name: 'Urgent'},
     {id: 'important', name: 'Important'},
-    {id: 'work', name: 'Work'},
+    {id: 'work', name: 'Career/Work'},
     {id: 'finance', name: 'Finance'},
     {id: 'it', name: 'IT'},
     {id: 'jobsearch', name: 'Job Search'},
