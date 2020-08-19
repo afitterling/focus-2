@@ -162,7 +162,7 @@ export class ItemForm extends React.Component {
 
           {this.state.showDim ?
             <div className="ui container">
-          {dims.map( dim => {            
+          {dims.sort((a,b)=> a.order - b.order).map( dim => {            
             return (
               <Form.Field key={dim.id}>
                 <RatingExampleControlled value={this.state.form.dimensions[dim.id]} onChange={this.onDimensionChange(dim.id)} name={dim.name}></RatingExampleControlled>

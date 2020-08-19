@@ -236,7 +236,7 @@ class App extends React.Component {
                         <div className="ui container">
 
                           {this.state.showDim ?
-                            dims.map(dim => {
+                            dims.sort((a,b)=>a.order - b.order).map(dim => {
                               return (
                                 <Form.Field key={dim.id}>
                                   <RatingExampleControlled value={this.state.filterDimensions[dim.id]} onChange={this.onfilterDimChange(dim.id)} name={dim.name}></RatingExampleControlled>
