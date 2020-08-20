@@ -22,7 +22,7 @@ const rawDims = [
 export const groups = [
     { id: 'importancy', name: 'Importancy', dims: ['urgent', 'important', 'leisure', 'life', 'goal'] },
     { id: 'wellbeing', name: 'Well-Being', dims: ['alleviate', 'balance', 'phyact', 'health'] },
-    { id: 'activityFields', name: 'Activities', dims: ['work', 'sustain', 'jobsearch', 'social', 'life', 'family', 'leisure', 'learn'] }
+    { id: 'activityFields', name: 'Spheres', dims: ['work', 'sustain', 'jobsearch', 'social', 'life', 'family', 'leisure', 'learn'] }
 ];
 
 const enhanceDimsWithGroups = (dims, groups) => { 
