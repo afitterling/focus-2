@@ -13,6 +13,7 @@ const rawDims = [
     {id: 'health', name: 'Health Supportive', order: 0},
     {id: 'phyact', name: 'Physical Activity', order: 0},
     {id: 'alleviate', name: 'Emotional Wellbeing', order: 0},
+    {id: 'spiritual', name: 'Spiritual Health', order: 0},
     {id: 'emergency', name: 'Emergency', order: 0},
     {id: 'balance', name: 'Life Balance', order: 0},
     {id: 'family', name: 'Family', order: 0},
@@ -21,7 +22,7 @@ const rawDims = [
 
 export const groups = [
     { id: 'importancy', name: 'Importancy Balance', dims: ['urgent', 'important', 'leisure', 'life', 'goal'] },
-    { id: 'wellbeing', name: 'Well-Being & Health', dims: ['alleviate', 'balance', 'phyact', 'health'] },
+    { id: 'wellbeing', name: 'Well-Being & Health', dims: ['alleviate', 'balance', 'phyact', 'health', 'spiritual'] },
     { id: 'activityFields', name: 'Life Spheres', dims: ['work', 'sustain', 'jobsearch', 'social', 'life', 'family', 'leisure', 'learn'] }
 ];
 
