@@ -116,7 +116,7 @@ export class Items extends React.Component {
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.sorterNumericDesc('progress')]}
-                    items={this.props.items.filter(i => !i.dateRaw)}>
+                    items={this.props.focusActive ? this.props.items.filter(i => !i.dateRaw && i.focus) : this.props.items.filter(i => !i.dateRaw)}>
                 </GenericTable>
                 {
                     this.state.showNewForm ?
