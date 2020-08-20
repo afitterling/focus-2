@@ -10,7 +10,7 @@ const rawDims = [
     {id: 'sustain', name: 'Life Sustaining', order: 0},
     {id: 'learn', name: 'Learning', order: 0},
     {id: 'life', name: 'Life', order: 0},
-    {id: 'health', name: 'Health', order: 0},
+    {id: 'health', name: 'Health Supportive', order: 0},
     {id: 'phyact', name: 'Physical Activity', order: 0},
     {id: 'alleviate', name: 'Psy. Wellbeing', order: 0},
     {id: 'emergency', name: 'Emergency', order: 0},
