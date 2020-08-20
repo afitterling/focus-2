@@ -20,9 +20,9 @@ const rawDims = [
 ];
 
 export const groups = [
-    { id: 'importance', name: 'Importance', dims: ['urgent', 'important', 'emergency', 'leisure', 'life', 'goal'] },
-    { id: 'wellbeing', name: 'Well-Being', dims: ['alleviate', 'balance', 'leisure', 'phyact', 'life', 'social', 'family', 'health'] },
-    { id: 'activityFields', name: 'Fields of Activities', dims: ['work', 'sustain', 'jobsearch', 'life', 'family', 'learn'] }
+    { id: 'importancy', name: 'Importancy', dims: ['urgent', 'important', 'leisure', 'life', 'goal'] },
+    { id: 'wellbeing', name: 'Well-Being', dims: ['alleviate', 'balance', 'phyact', 'health'] },
+    { id: 'activityFields', name: 'Activities', dims: ['work', 'sustain', 'jobsearch', 'social', 'life', 'family', 'leisure', 'learn'] }
 ];
 
 const enhanceDimsWithGroups = (dims, groups) => { 
