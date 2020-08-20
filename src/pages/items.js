@@ -90,6 +90,8 @@ export class Items extends React.Component {
         return items.filter(i => moment(i.dateRaw).diff(moment(), 'hours') < 6);
     }
 
+    noDoing = (items) => items.filter(i => !i.inProgress)
+
     render() {
         return (
             <div className="ui">
@@ -108,7 +110,7 @@ export class Items extends React.Component {
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.ascSorter('dateRaw'), this.sorterNumericDesc('progress')]}
-                    items={this.props.focusActive ? this.onFocusFilterDate(this.props.items.filter(i => i.dateRaw)) : this.props.items.filter(i => i.dateRaw)}>
+                    items={this.props.focusActive ? this.noDoing(this.onFocusFilterDate(this.props.items.filter(i => i.dateRaw))) : this.props.items.filter(i => i.dateRaw)}>
                 </GenericTable>
                 
                 <GenericTable title={['Pending', '']}
@@ -116,7 +118,7 @@ export class Items extends React.Component {
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.sorterNumericDesc('progress')]}
-                    items={this.props.focusActive ? this.props.items.filter(i => !i.dateRaw && i.focus) : this.props.items.filter(i => !i.dateRaw)}>
+                    items={this.props.focusActive ? this.noDoing(this.props.items.filter(i => !i.dateRaw && i.focus)) : this.props.items.filter(i => !i.dateRaw)}>
                 </GenericTable>
                 {
                     this.state.showNewForm ?
