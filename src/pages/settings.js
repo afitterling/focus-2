@@ -24,8 +24,9 @@ class Settings extends React.Component {
         localStorage.setItem('email', JSON.stringify(e.target.value));
     }
 
-    dataUri = 'data:application/json;charset=utf-8,' + this.exportToJsonFile(this.props.items);
+    //dataUri = 'data:application/json;charset=utf-8,' + this.exportToJsonFile(this.props.items);
     //dataUri = 'data:application/octet-stream;charset=utf-8,' + this.exportToJsonFile(this.props.items);
+    dataUri = window.URL.createObjectURL(new Blob([JSON.stringify(this.props.items)], { type: 'octet/stream' }));
 
     exportToJsonFile(jsonData) {
         let dataStr = JSON.stringify(jsonData);
