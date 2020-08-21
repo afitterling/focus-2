@@ -11,7 +11,6 @@ class Settings extends React.Component {
     constructor(props){
         super(props);
         this.dispatch = this.props.dispatch;
-        console.log('settings', props);
         this.state = {email: '', destroy: false}
     }
 
@@ -68,8 +67,13 @@ class Settings extends React.Component {
                 <h2>Export</h2>
                 <a href={this.dataUri} download="focus2.data">Focus-2 Data</a>
                 <h2>Import</h2>
-                <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input>
-                Destroy old data <input onChange={()=>{this.setState({destroy: !this.state.destroy}); console.log(!this.state.destroy)}} value={this.state.destroy} type="checkbox"/>
+                <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input><br></br>
+                <Form>
+                    <Form.Field>
+                        <label>Destroy Current Data on Import</label>
+                        <input onChange={()=>{this.setState({destroy: !this.state.destroy}); console.log(!this.state.destroy)}} value={this.state.destroy} type="checkbox"/> 
+                    </Form.Field>
+                </Form>
             </React.Fragment>
         );
     }
