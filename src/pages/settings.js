@@ -12,7 +12,7 @@ class Settings extends React.Component {
         super(props);
         this.dispatch = this.props.dispatch;
         console.log('settings', props);
-        this.state = {email: ''}
+        this.state = {email: '', destroy: false}
     }
 
     componentDidMount(){
@@ -38,7 +38,12 @@ class Settings extends React.Component {
         reader.onload = (e) => {
             const items = e.target.result;
             console.log(items);
-            localStorage.setItem('items', items);
+            if (this.state.destroy){
+                localStorage.setItem('items', items);
+            }
+            if (!this.state.destroy){
+                localStorage.setItem('items', JSON.stringify([...this.props.items, ...JSON.parse(items)]));
+            }
             window.location.reload();
         }
         reader.readAsText(e.target.files[0]);
@@ -64,6 +69,7 @@ class Settings extends React.Component {
                 <a href={this.dataUri} download="focus2.data">Focus-2 Data</a>
                 <h2>Import</h2>
                 <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input>
+                Destroy old data <input onChange={()=>{this.setState({destroy: !this.state.destroy}); console.log(!this.state.destroy)}} value={this.state.destroy} type="checkbox"/>
             </React.Fragment>
         );
     }
