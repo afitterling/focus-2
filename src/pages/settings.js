@@ -24,7 +24,8 @@ class Settings extends React.Component {
         localStorage.setItem('email', JSON.stringify(e.target.value));
     }
 
-    dataUri = 'data:application/json;charset=utf-8,' + this.exportToJsonFile(this.props.items);
+    //dataUri = 'data:application/json;charset=utf-8,' + this.exportToJsonFile(this.props.items);
+    dataUri = 'data:application/octet-stream;charset=utf-8,' + this.exportToJsonFile(this.props.items);
 
     exportToJsonFile(jsonData) {
         let dataStr = JSON.stringify(jsonData);
@@ -59,7 +60,7 @@ class Settings extends React.Component {
                     </Form.Field>
                 </Form>
                 <h2>Download</h2>
-                <a href={this.dataUri} download>data.json</a>
+                <a href={this.dataUri} download="focus2.data">data.json</a>
                 <h2>Import</h2>
                 <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input>
             </React.Fragment>
