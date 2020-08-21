@@ -109,7 +109,7 @@ class App extends React.Component {
             </div>
             <div className="ui message blue container">
               The data is stored locally in this particular browser only. To use this app, allways open it in your favorite browser not to lose data or go
-              go to Settings to export or later import your data.
+              to Settings to export and import your data.
             </div>
 
           </Grid.Column>
