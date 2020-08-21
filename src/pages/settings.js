@@ -60,7 +60,7 @@ class Settings extends React.Component {
                         <input value={this.state.email} onChange={this.onEmailChange} disabled={false} />
                     </Form.Field>
                 </Form>
-                <h2>Download</h2>
+                <h2>Export</h2>
                 <a href={this.dataUri} download="focus2.data">Focus-2 Data</a>
                 <h2>Import</h2>
                 <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input>
