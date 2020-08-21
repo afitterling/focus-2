@@ -26,7 +26,7 @@ class Settings extends React.Component {
 
     //dataUri = 'data:application/json;charset=utf-8,' + this.exportToJsonFile(this.props.items);
     //dataUri = 'data:application/octet-stream;charset=utf-8,' + this.exportToJsonFile(this.props.items);
-    dataUri = window.URL.createObjectURL(new Blob([JSON.stringify(this.props.items)], { type: 'octet/stream' }));
+    dataUri = window.URL.createObjectURL(new Blob([JSON.stringify(this.props.items)], { type: 'text/plain;charset=utf-8' }));
 
     exportToJsonFile(jsonData) {
         let dataStr = JSON.stringify(jsonData);
@@ -61,7 +61,7 @@ class Settings extends React.Component {
                     </Form.Field>
                 </Form>
                 <h2>Download</h2>
-                <a href={this.dataUri} download="focus2.data">data.json</a>
+                <a href={this.dataUri} download="focus2.data">Focus-2 Data</a>
                 <h2>Import</h2>
                 <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input>
             </React.Fragment>
