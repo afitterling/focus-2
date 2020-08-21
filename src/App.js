@@ -5,7 +5,7 @@ import { Items } from './pages/items';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar, Form } from 'semantic-ui-react'
 import { Dimensions } from './pages/dimensions';
-import { Settings } from './pages/settings';
+import Settings from './pages/settings';
 import { Dimensions as dims, groups } from './models/dimensions';
 import { congruentMatcher, filterItems } from './pages/assistant';
 import RatingExampleControlled from './components/rating';
@@ -226,7 +226,7 @@ class App extends React.Component {
                         <Dimensions items={this.props.items}></Dimensions>
                       </Route>
                       <Route path="/settings">
-                        <Settings userId={this.props.userId}></Settings>
+                        <Settings></Settings>
                       </Route>
                       <Route path="/assistant">
                         <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={this.state.showDim ? 'icon minus' : 'icon plus'}></i> Filter</button>
