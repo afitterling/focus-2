@@ -59,7 +59,7 @@ class Settings extends React.Component {
                     </Form.Field>
                 </Form>
                 <h2>Download</h2>
-                <a download="focus2.json" href={this.dataUri}>data.json</a>
+                <a download="focus2.data" href={this.dataUri}>data.json</a>
                 <h2>Import</h2>
                 <input onChange={this.onFileUpload} type="file" name="files[]" id="fileUpload"></input>
             </React.Fragment>
