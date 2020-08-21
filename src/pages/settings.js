@@ -36,7 +36,7 @@ class Settings extends React.Component {
         reader.onload = (e) => {
             const items = e.target.result;
             console.log(items);
-            localStorage.setItems('items', JSON.stringify(items));
+            localStorage.setItem('items', JSON.stringify(items));
             window.location.reload();
         }
         reader.readAsText(e.target.files[0]);
