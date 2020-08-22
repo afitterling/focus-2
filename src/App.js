@@ -13,13 +13,13 @@ import { RadarChart as Radar } from './components/graphs/radar';
 import Repository from './services/repository';
 import { connect } from 'react-redux';
 import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
-//import { browserHistory } from 'react-router-dom';
-// https://stackoverflow.com/questions/40729113/how-to-access-history-listen-in-a-react-component
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    const route = window.location.pathname.replace('/', '');
+    const activeItem = !route ? 'focus' : route;
     const fdims = {};
     console.log('appProps', props);
     dims.forEach(i => fdims[i.id] = 0);
@@ -28,7 +28,8 @@ class App extends React.Component {
       filterDimensions: fdims,
       visible: false,
       showNewForm: false,
-      values: []
+      values: [],
+      activeItem: activeItem
     };
   }
 
@@ -66,9 +67,6 @@ class App extends React.Component {
     Repository.saveItems(items);
   }
 
-  componentDidMount() {
-  }
-
   toggleNew = () => {
     this.setState({ showNewForm: true });
   }
@@ -101,10 +99,6 @@ class App extends React.Component {
       default:
         return 'unknown';
     }
-  }
-
-  onRouteEnter = (e) => {
-    console.log(e);
   }
 
   render() {
