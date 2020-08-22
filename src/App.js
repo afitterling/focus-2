@@ -72,6 +72,7 @@ class App extends React.Component {
   }
 
   menuItemClick = (e, { name }) => {
+    console.log(name);
     this.setState({ activeItem: name });
   }
 
@@ -83,6 +84,22 @@ class App extends React.Component {
     };
   }
 
+  getPageTitle = (menuItem) =>{
+    if (!menuItem) return;
+    const name = menuItem;
+    switch (name) {
+      case 'agenda':
+        return 'Personal Agenda';
+      case 'settings':
+        return 'Settings';
+      case 'assistant':
+        return 'Personal Assistant';
+      case 'focus':
+        return 'In Focus';
+      default:
+        return 'unknown';
+    }
+  }
   render() {
     return (
       <Router>
@@ -113,6 +130,9 @@ class App extends React.Component {
             </div>
             <div className="ui container">
               <a className="button ui primary" href="https://forms.clickup.com/f/3fd87-1174/4V7XICVQA1BNJUB7JB">Press here to give Feedback about this App</a>
+            </div>
+            <div className="ui top attached tabular menu">
+              <div className="active item">{this.getPageTitle(this.state.activeItem)}</div>
             </div>
           </Grid.Column>
           <Grid.Column>
