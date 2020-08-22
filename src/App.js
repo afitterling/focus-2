@@ -108,10 +108,12 @@ class App extends React.Component {
               </div>
             </div>
             <div className="ui message blue container">
-              The data is stored locally in this particular browser only. To use this app, allways open it in your favorite browser not to lose data or go
+              The data is stored locally in this particular browser only. To use this app, open it in your favorite browser not to lose data or go
               to Settings to export and import your data.
             </div>
-
+            <div className="ui container">
+              <a className="button ui primary" href="https://forms.clickup.com/f/3fd87-1174/4V7XICVQA1BNJUB7JB">Press here to give Feedback about this App</a>
+            </div>
           </Grid.Column>
           <Grid.Column>
             <Sidebar.Pushable as={Segment}>
