@@ -26,10 +26,10 @@ export class ItemForm extends React.Component {
     }
 
     findAValidPattern = (value) => {
-      if (value === 'today'){
+      if (value.toLowerCase() === 'today'){
         return moment(moment(), "ddd, DD.MM.YYYY");
       }
-      if (value === 'tomorrow'){
+      if (value.toLowerCase() === 'tomorrow'){
         return moment(moment().add(1, 'days'), "ddd, DD.MM.YYYY");
       }
       if (moment(value, "D.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
