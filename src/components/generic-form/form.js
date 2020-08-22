@@ -68,7 +68,13 @@ export class ItemForm extends React.Component {
       form['focus'] = !this.state.form.focus;
       this.setState({form: {...form}});
     }
-    
+
+    onToggleChange = (name) => (e) => {
+      const form = this.state.form;
+      form[name] = !this.state.form[name];
+      this.setState({form: {...form}});
+    }
+
     onDoingChange = (e) => {
       const form = this.state.form;
       form['inProgress'] = !this.state.form.inProgress;
@@ -154,6 +160,12 @@ export class ItemForm extends React.Component {
             <div className="ui checkbox">
               <input type="checkbox" checked={this.state.form.focus} onChange={this.onFocusChange} name={'focus'} />
               <label>Focus</label>
+            </div>
+          </Form.Field>
+          <Form.Field>
+            <div className="ui checkbox">
+              <input type="checkbox" checked={this.state.form.agenda} onChange={this.onToggleChange('agenda')} name={'agenda'} />
+              <label>Personal Agenda Item</label>
             </div>
           </Form.Field>
           <Form.Field>

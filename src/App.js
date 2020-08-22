@@ -135,6 +135,17 @@ class App extends React.Component {
                     Focus
                   </Menu.Item>
                 </Link>
+                <Link to="/agenda">
+                  <Menu.Item
+                    name='agenda'
+                    as='li'
+                    active={this.state.activeItem === 'agenda'}
+                    onClick={this.menuItemClick}
+                  >
+                    <Icon circular name='user' />
+                    Personal Agenda
+                  </Menu.Item>
+                </Link>
                 {/*                 <Link to="/">
                   <Menu.Item
                     name='all'
@@ -187,22 +198,8 @@ class App extends React.Component {
                 <Segment basic>
                   <div className="ui container">
                     <Switch>
-                      {/*                       <Route exact path="/">
-                        <Items onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
-                      </Route>
- */}                      <Route exact path="/">
+                       <Route exact path="/">
                         <Items focusActive={true} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items}></Items>
-{/*                         <h2>All</h2>
-                        <Radar variables={dims.map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={this.props.items.filter(i => i.focus).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
- */}
                         {
                           groups.map(grp => {
                             return (
@@ -211,6 +208,28 @@ class App extends React.Component {
                                 <Radar variables={dims.filter(d => d.groups.find(g => g === grp.id)).map(i => {
                                   return { key: i.id, label: i.name };
                                 })} values={this.props.items.filter(i => i.focus).map(i => {
+                                  return {
+                                    key: i.id,
+                                    label: i.title,
+                                    values: i.dimensions
+                                  }
+                                })}></Radar>
+                              </React.Fragment>
+                            );
+                          })
+                        }
+
+                      </Route>
+                       <Route path="/agenda">
+                        <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={this.props.items.filter(i => i.agenda)}></Items>
+                        {
+                          groups.map(grp => {
+                            return (
+                              <React.Fragment key={grp.id}>
+                                <h2>{grp.name}</h2>
+                                <Radar variables={dims.filter(d => d.groups.find(g => g === grp.id)).map(i => {
+                                  return { key: i.id, label: i.name };
+                                })} values={this.props.items.filter(i => i.agenda).map(i => {
                                   return {
                                     key: i.id,
                                     label: i.title,
@@ -247,18 +266,6 @@ class App extends React.Component {
                           }
                         </div>
                         <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
-
-{/*                         <h2>All</h2>
-                        <Radar variables={dims.map(i => {
-                          return { key: i.id, label: i.name };
-                        })} values={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher).map(i => {
-                          return {
-                            key: i.id,
-                            label: i.title,
-                            values: i.dimensions
-                          }
-                        })}></Radar>
- */}
                         {
                           groups.map(grp => {
                             return (
