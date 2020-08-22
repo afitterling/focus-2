@@ -20,7 +20,7 @@ export class Items extends React.Component {
     }
 
     onNewItem() {
-        const newItem = {title: '', desc: '', date: '', focus: false, inProgress: this.props.focusActive, progress: 0, dimensions: {}};
+        const newItem = {title: '', desc: '', date: '', focus: this.props.focusActive, inProgress: false, progress: 0, dimensions: {}};
         // TODO replace failsafe
         dims.forEach( v => {
             newItem.dimensions[v.id] = 0;
