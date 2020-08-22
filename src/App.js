@@ -134,12 +134,12 @@ class App extends React.Component {
             </div>
           </Grid.Column>
           <Grid.Column>
-          <div className="ui container">
-              <div className="ui top attached tabular menu">
+            <div className="ui container">
+              <div className="ui top attached tabular menu" style={{borderBottom: 0}}>
                 <div className="active item">{this.getPageTitle(this.state.activeItem)}</div>
               </div>
             </div>
-            <Sidebar.Pushable as={Segment}>
+            <Sidebar.Pushable style={{marginTop: 0}} as={Segment}>
               <Sidebar
                 as={Menu}
                 animation='overlay'
