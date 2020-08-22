@@ -130,7 +130,7 @@ export class ItemForm extends React.Component {
             </div>
           </Form.Field>
           <Form.Field disabled={!this.state.form.title}>
-            <label>Description</label>
+            <label>Description or Link</label>
             <div className="ui action input">
               <input placeholder='description' value={this.state.form.desc} onChange={this.onChange('desc')} />
               <button type="button" onClick={this.onResetInput('desc')} className="ui icon button">
