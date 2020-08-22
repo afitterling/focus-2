@@ -42,7 +42,7 @@ export class ItemForm extends React.Component {
       if (moment(value, "DD.M").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.MM").isValid()) return moment(value, "ddd, DD.MM.YYYY");
 
-      if (moment(value, "ddd").isValid()) return moment(value, "ddd, DD.MM.YYYY");
+      if (moment(value, "ddd").isValid()) return moment(value, "ddd, DD.MM.YYYY").add(7, 'days');
       return moment(value, "ddd, DD.MM.YYYY");
     }
 
