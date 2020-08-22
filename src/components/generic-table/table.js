@@ -9,10 +9,17 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
         sortedItems = sortedItems.sort(sortFn);
     });
 
+    const onOpenURL = (url) => (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(url);
+    }
+
     const transformToLinkIfAny = (string) => {        
         if (new RegExp(/http[s]?:\/\//).test(string)){
+            const url = string;
             return (<React.Fragment>
-                <i className="icon external square alternate"></i><a href={string} onClick={(e)=>{e.stopPropagation()}}>{string.slice(0,30)}...</a>
+                <i className="icon external square alternate"></i><a href={url} onClick={onOpenURL(url)}>{url.slice(0,35)}...</a>
             </React.Fragment>)    
         }
         return string;
