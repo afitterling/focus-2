@@ -13,6 +13,8 @@ import { RadarChart as Radar } from './components/graphs/radar';
 import Repository from './services/repository';
 import { connect } from 'react-redux';
 import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
+//import { browserHistory } from 'react-router-dom';
+// https://stackoverflow.com/questions/40729113/how-to-access-history-listen-in-a-react-component
 
 class App extends React.Component {
 
@@ -100,6 +102,11 @@ class App extends React.Component {
         return 'unknown';
     }
   }
+
+  onRouteEnter = (e) => {
+    console.log(e);
+  }
+
   render() {
     return (
       <Router>
