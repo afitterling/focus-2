@@ -12,7 +12,7 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
     const transformToLinkIfAny = (string) => {        
         if (new RegExp(/http[s]?:\/\//).test(string)){
             return (<React.Fragment>
-                <i className="icon external square alternate"></i><a href={string}>{string}</a>
+                <i className="icon external square alternate"></i><a href={string}>{string.slice(0,40)}...</a>
             </React.Fragment>)    
         }
         return string;
@@ -30,8 +30,8 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
                 {sortedItems.map((item) => (
                     <Table.Row key={item.id}>
                         <Table.Cell onClick={onCellClick(item.id)}>
-                            <Header as='h4' image style={{maxWidth: '100%'}}>                                
-                                <Header.Content style={{maxWidth: '100%'}}>
+                            <Header as='h4' image style={{width: '100%'}}>                                
+                                <Header.Content style={{width: '100%'}}>
                                     {item[displayName[0]]} {item.focus ? <div className="ui blue horizontal label">Focus</div> : null}{item.inProgress ? <div className="ui pink horizontal label">Doing</div> : null}<br/>
                                     {item.progress > 0 ? <Progress style={{margin: '5px 0', width: '100%'}} percent={item.progress/12*100} size='tiny'></Progress> : null}
                                     <Header.Subheader>
