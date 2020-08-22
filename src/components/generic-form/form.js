@@ -26,6 +26,12 @@ export class ItemForm extends React.Component {
     }
 
     findAValidPattern = (value) => {
+      if (value === 'today'){
+        return moment(moment(), "ddd, DD.MM.YYYY");
+      }
+      if (value === 'tomorrow'){
+        return moment(moment().add(1, 'days'), "ddd, DD.MM.YYYY");
+      }
       if (moment(value, "D.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
       if (moment(value, "DD.MM.YYYY").isValid()) return moment(value, "ddd, DD.MM.YYYY");
 
@@ -134,6 +140,9 @@ export class ItemForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Scheduled</label>
+            <div className="ui">
+              E.g.: ,,today'', ,,tomorrow'', ,,Tue'', ,,4.5.'', ,,16.8.'', ,,1.10.2020''
+            </div>
             <div className="ui action input">
               <input type="text" placeholder='human readable date' value={this.state.form.date} onChange={this.onDateChange} />
               <button type="button" onClick={this.onResetDate} className="ui icon button">
