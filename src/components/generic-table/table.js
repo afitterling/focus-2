@@ -12,7 +12,7 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
     const transformToLinkIfAny = (string) => {        
         if (new RegExp(/http[s]?:\/\//).test(string)){
             return (<React.Fragment>
-                <i className="icon external square alternate"></i><a href={string}>{string.slice(0,40)}...</a>
+                <i className="icon external square alternate"></i><a href={string} onClick={(e)=>{e.stopPropagation()}}>{string.slice(0,40)}...</a>
             </React.Fragment>)    
         }
         return string;
