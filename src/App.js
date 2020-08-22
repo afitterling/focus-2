@@ -132,11 +132,13 @@ class App extends React.Component {
             <div className="ui container">
               <a className="button ui primary" href="https://forms.clickup.com/f/3fd87-1174/4V7XICVQA1BNJUB7JB">Press here to give Feedback about this App</a>
             </div>
-            <div className="ui top attached tabular menu">
-              <div className="active item">{this.getPageTitle(this.state.activeItem)}</div>
-            </div>
           </Grid.Column>
           <Grid.Column>
+          <div className="ui container">
+              <div className="ui top attached tabular menu">
+                <div className="active item">{this.getPageTitle(this.state.activeItem)}</div>
+              </div>
+            </div>
             <Sidebar.Pushable as={Segment}>
               <Sidebar
                 as={Menu}
