@@ -1,5 +1,4 @@
 import React from 'react';
-//import _ from 'lodash';
 
 export class AutoComplete extends React.Component {
 
@@ -13,12 +12,10 @@ export class AutoComplete extends React.Component {
     _onChange = (e) => {
         const val = e.target.value;
         this.setState({ form: {searchString: val}});
-        console.log(val);
         clearTimeout(this.promise);
         this.promise = setTimeout(() => {
             this.onDebounce(val);
         }, 200)
-        //_.debounce(this.onDebounce, 2000);
     }
     
     filter = (val) => {

@@ -103,7 +103,6 @@ class App extends React.Component {
   }
 
   onAutoCompleteChange = (value, items) => {
-    console.log(value, items);
     this.setState({autoCompleteItems: items});
     return items;
   }
