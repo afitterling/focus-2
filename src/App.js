@@ -259,7 +259,7 @@ class App extends React.Component {
                         {
                           !!this.state.filterDimensions ? <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { window.location.reload() }}><i className="icon trash"></i></button> : null
                         }
-                        <AutoComplete matcher={(val,i)=>new RegExp(val).test(i.title)||new RegExp(val).test(i.desc)} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)} onChange={this.onAutoCompleteChange}></AutoComplete>
+                        <AutoComplete matcher={(val,i)=>new RegExp(val.toLowerCase()).test(i.title.toLowerCase())||new RegExp(val.toLowerCase()).test(i.desc.toLowerCase())} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)} onChange={this.onAutoCompleteChange}></AutoComplete>
 
                         <div className="ui container">
 
