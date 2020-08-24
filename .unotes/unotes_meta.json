@@ -1,0 +1,60 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "public": {
+      "name": "public",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "src": {
+      "name": "src",
+      "isOrdered": true,
+      "folders": {
+        "components": {
+          "name": "components",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "models": {
+          "name": "models",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "pages": {
+          "name": "pages",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "redux": {
+          "name": "redux",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "services": {
+          "name": "services",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "utils": {
+          "name": "utils",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        }
+      },
+      "files": {
+        "book": 0
+      }
+    }
+  },
+  "files": {
+    "README": 0
+  }
+}

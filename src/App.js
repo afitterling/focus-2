@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { Items } from './pages/items';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom'
 import { Grid, Segment, Menu, Icon, Sidebar, Form } from 'semantic-ui-react'
-import { Dimensions } from './pages/dimensions';
 import Settings from './pages/settings';
 import { Dimensions as dims, groups } from './models/dimensions';
 import { congruentMatcher, filterItems } from './pages/assistant';
@@ -13,6 +12,7 @@ import { RadarChart as Radar } from './components/graphs/radar';
 import Repository from './services/repository';
 import { connect } from 'react-redux';
 import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
+import { AutoComplete } from './components/autoComplete';
 
 class App extends React.Component {
 
@@ -29,7 +29,8 @@ class App extends React.Component {
       visible: false,
       showNewForm: false,
       values: [],
-      activeItem: activeItem
+      activeItem: activeItem,
+      autoCompleteItems: []
     };
   }
 
@@ -99,6 +100,12 @@ class App extends React.Component {
       default:
         return 'unknown';
     }
+  }
+
+  onAutoCompleteChange = (value, items) => {
+    console.log(value, items);
+    this.setState({autoCompleteItems: items});
+    return items;
   }
 
   render() {
@@ -171,29 +178,6 @@ class App extends React.Component {
                     Personal Agenda
                   </Menu.Item>
                 </Link>
-                {/*                 <Link to="/">
-                  <Menu.Item
-                    name='all'
-                    as='li'
-                    active={this.state.activeItem === 'all'}
-                    onClick={this.menuItemClick}
-                  >
-                    <Icon name='sort amount down' />
-                    Activities
-                  </Menu.Item>
-                </Link>
- */}                {/*                 <Link to="/dimensions">
-                  <Menu.Item
-                    name='dimensions'
-                    as='li'
-                    active={this.state.activeItem === 'dimensions'}
-                    onClick={this.menuItemClick}
-                  >
-                    <Icon name='braille' />
-                    Dimensions
-                  </Menu.Item>
-                </Link>
-*/}
                 <Link to="/assistant">
                   <Menu.Item
                     name='assistant'
@@ -267,9 +251,6 @@ class App extends React.Component {
                         }
 
                       </Route>
-                      <Route path="/dimensions">
-                        <Dimensions items={this.props.items}></Dimensions>
-                      </Route>
                       <Route path="/settings">
                         <Settings></Settings>
                       </Route>
@@ -278,6 +259,8 @@ class App extends React.Component {
                         {
                           !!this.state.filterDimensions ? <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { window.location.reload() }}><i className="icon trash"></i></button> : null
                         }
+                        <AutoComplete items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)} onChange={this.onAutoCompleteChange}></AutoComplete>
+
                         <div className="ui container">
 
                           {this.state.showDim ?
@@ -290,7 +273,7 @@ class App extends React.Component {
                             }) : null
                           }
                         </div>
-                        <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.props.items, this.state.filterDimensions, congruentMatcher)}></Items>
+                        <Items focusActive={false} onItemDelete={this.onDeleteItem} onUpdateItem={this.onUpdate} onItemAdd={this.onAdd} items={filterItems(this.state.autoCompleteItems, this.state.filterDimensions, congruentMatcher)}></Items>
                         {
                           groups.map(grp => {
                             return (
