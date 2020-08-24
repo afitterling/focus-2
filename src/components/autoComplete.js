@@ -23,7 +23,6 @@ export class AutoComplete extends React.Component {
     };
 
     onDebounce = (val) => {
-        console.log('debounced');
         this.props.onChange(
             val,
             this.filter(val)
