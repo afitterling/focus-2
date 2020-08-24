@@ -22,7 +22,7 @@ export class AutoComplete extends React.Component {
     }
     
     filter = (val) => {
-        return this.props.items.filter(i => new RegExp(val).test(i.title));
+        return this.props.items.filter(i => this.props.matcher(val, i));
     };
 
     onDebounce = (val) => {
