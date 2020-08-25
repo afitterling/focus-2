@@ -118,7 +118,7 @@ class App extends React.Component {
                   <i className="circle outline icon"></i>
                   <div className="content">
                     Focus-2
-                    <div className="sub header">Task & Activity Manager</div>
+                    <div className="sub header">Task & Activity Assistant <e>(humanly aware)</e></div>
                   </div>
                 </h2>
                 {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
