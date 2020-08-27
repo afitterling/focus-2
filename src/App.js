@@ -162,7 +162,7 @@ class App extends React.Component {
                     active={this.state.activeItem === 'focus'}
                     onClick={this.menuItemClick}
                   >
-                    <Icon name='crosshairs' />
+                    <Icon name='eye'/>
                     Focus
                   </Menu.Item>
                 </Link>
