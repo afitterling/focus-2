@@ -25,12 +25,13 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
         return string;
     }
 
+    const style = {background: 'rgba(0,0,0,0.7)', color: 'white'};
     return (
         <Table unstackable>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>{title[0]}</Table.HeaderCell>
-                    <Table.HeaderCell>{title[1]}</Table.HeaderCell>
+                    <Table.HeaderCell style={style}>{title[0]}</Table.HeaderCell>
+                    <Table.HeaderCell style={style}>{title[1]}</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>   

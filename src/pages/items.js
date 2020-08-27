@@ -127,6 +127,14 @@ export class Items extends React.Component {
                     items={this.props.focusActive ? this.noDoing(this.onFocusFilterDate(this.props.items.filter(i => i.dateRaw))) : this.props.items.filter(i => i.dateRaw)}>
                 </GenericTable>
                 
+                <GenericTable title={['Priorized', '']}
+                    displayName={['title', 'desc']}
+                    onCellClick={this.onCellClick}
+                    onDelete={this.props.onItemDelete}
+                    sorterFns={[this.sorterDimensionsDesc('priority')]}
+                    items={this.props.items.slice(0,3)}>
+                </GenericTable>
+
                 <GenericTable title={['Pending', '']}
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
