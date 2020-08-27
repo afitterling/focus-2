@@ -117,7 +117,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    sorterFns={[this.sorterNumericDesc('progress')]}
+                    sorterFns={[this.sorterNumericDesc('priority'), this.sorterNumericDesc('progress')]}
                     items={this.props.focusActive ? this.noDoing(this.props.items.filter(i => !i.dateRaw && i.focus)) : this.props.items.filter(i => !i.dateRaw)}>
                 </GenericTable>
                 {

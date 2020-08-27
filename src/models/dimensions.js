@@ -3,6 +3,7 @@ const rawDims = [
     {id: 'goal', name: 'Life Goal', order: 0},
     {id: 'urgent', name: 'Urgent', order: -10},
     {id: 'important', name: 'Important', order: -10},
+    {id: 'priority', name: 'Priority', order: -12},
     {id: 'work', name: 'Career/Work', order: 0},
     {id: 'finance', name: 'Finance', order: 0},
     {id: 'it', name: 'IT', order: 0},
@@ -21,7 +22,7 @@ const rawDims = [
 ];
 
 export const groups = [
-    { id: 'importancy', name: 'Importancy & Balance', dims: ['urgent', 'important', 'leisure', 'life', 'goal'] },
+    { id: 'importancy', name: 'Importancy & Balance', dims: ['priority', 'urgent', 'important', 'leisure', 'life', 'goal'] },
     { id: 'wellbeing', name: 'Well-Being & Health', dims: ['alleviate', 'balance', 'phyact', 'health'] },
     { id: 'activityFields', name: 'Life Spheres', dims: ['work', 'sustain', 'jobsearch', 'social', 'life', 'family', 'leisure', 'learn'] }
 ];

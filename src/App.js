@@ -112,13 +112,13 @@ class App extends React.Component {
       <Router>
         <Grid columns={1} style={{ marginTop: '0.5rem' }}>
           <Grid.Column>
-            <div className="ui two column container grid">
-              <div className="column">
+            <div className="ui three column container grid">
+              <div className="two columns">
                 <h2 className="ui header">
                   <i className="circle outline icon"></i>
                   <div className="content">
                     Focus-2
-                    <div className="sub header">Task & Activity Assistant <e>(humanly aware)</e></div>
+                    <div className="sub header">Task & Activity Assistant</div>
                   </div>
                 </h2>
                 {/* <div className="message ui orange">Data is stored locally. To use this app in production open this URL in your favorite browser.</div> */}
