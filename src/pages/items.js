@@ -58,6 +58,7 @@ export class Items extends React.Component {
         return (a,b) => {
             const compA = parseInt(a[sortBy]);
             const compB = parseInt(b[sortBy]);
+            console.log(compA, compB);
             if (compA > compB) return -1;
             if (compA < compB) return 1;
         }
@@ -117,7 +118,7 @@ export class Items extends React.Component {
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
-                    sorterFns={[this.sorterNumericDesc('priority'), this.sorterNumericDesc('progress')]}
+                    sorterFns={[this.sorterNumericDesc('progress')]}
                     items={this.props.focusActive ? this.noDoing(this.props.items.filter(i => !i.dateRaw && i.focus)) : this.props.items.filter(i => !i.dateRaw)}>
                 </GenericTable>
                 {
