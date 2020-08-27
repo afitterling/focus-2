@@ -132,7 +132,8 @@ export class Items extends React.Component {
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.sorterDimensionsDesc('priority')]}
-                    items={this.props.items.filter(i => i.dimensions && !!i.dimensions.priority).slice(0,3)}>
+                    count={3}
+                    items={this.props.items.filter(i => i.dimensions && !!i.dimensions.priority)}>
                 </GenericTable>
 
                 <GenericTable title={['Pending', '']}

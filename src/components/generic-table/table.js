@@ -1,13 +1,17 @@
 import React from 'react';
 import { Table, Header, Progress } from 'semantic-ui-react';
 
-export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, onCellClick }) => {
+export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, onCellClick, count }) => {
 
     let sortedItems = [...items];
 
     sorterFns.reverse().forEach( sortFn => {
         sortedItems = sortedItems.sort(sortFn);
     });
+
+    if (count) {
+        sortedItems = sortedItems.slice(0,count);
+    }
 
     const onOpenURL = (url) => (e) => {
         e.preventDefault();
