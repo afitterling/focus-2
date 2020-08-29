@@ -6,7 +6,11 @@ class Assistant20 extends React.Component {
     constructor(props){
         super(props);
         console.log('Assistant20', props);
-        this.state = { itemsRedux: props.itemsRedux}
+        this.state = {
+                        itemsRedux: props.itemsRedux,
+                        priority: props.itemsRedux.filter(i => i.dimensions && i.dimensions.priority)
+                     }
+        console.log(this.state);
     }
 
     render(){
