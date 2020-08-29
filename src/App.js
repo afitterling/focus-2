@@ -13,6 +13,7 @@ import Repository from './services/repository';
 import { connect } from 'react-redux';
 import { ITEM_RM, ITEM_ADD } from './redux/actionTypes';
 import { AutoComplete } from './components/autoComplete';
+import Assistant20 from './pages/assistant20';
 
 class App extends React.Component {
 
@@ -85,6 +86,10 @@ class App extends React.Component {
     };
   }
 
+  /**
+   * 
+   * @param {*} menuItem 
+   */
   getPageTitle = (menuItem) =>{
     if (!menuItem) return;
     const name = menuItem;
@@ -97,6 +102,8 @@ class App extends React.Component {
         return 'Personal Assistant';
       case 'focus':
         return 'In Focus';
+      case 'assistant-2':
+        return 'Beta';
       default:
         return 'unknown';
     }
@@ -188,6 +195,17 @@ class App extends React.Component {
                     Assistant
                   </Menu.Item>
                 </Link>
+                <Link to="/assistant-2">
+                  <Menu.Item
+                    name='assistant-2'
+                    as='li'
+                    active={this.state.activeItem === 'assistant-2'}
+                    onClick={this.menuItemClick}
+                  >
+                    <Icon name='braille' />
+                    <em>Beta</em>
+                  </Menu.Item>
+                </Link>
                 <Link to="/settings">
                   <Menu.Item
                     name='settings'
@@ -252,6 +270,9 @@ class App extends React.Component {
                       </Route>
                       <Route path="/settings">
                         <Settings></Settings>
+                      </Route>
+                      <Route path="/assistant-2">
+                        <Assistant20></Assistant20>
                       </Route>
                       <Route path="/assistant">
                         <button style={{ marginBottom: '10px' }} className="ui secondary button" onClick={() => { this.setState({ showDim: !this.state.showDim }) }}><i className={this.state.showDim ? 'icon minus' : 'icon plus'}></i> Filter</button>

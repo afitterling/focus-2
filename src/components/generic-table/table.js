@@ -7,7 +7,7 @@ export const GenericTable = ({ items, sorterFns, title, onDelete, displayName, o
 
     sorterFns.reverse().forEach( sortFn => {
         sortedItems = sortedItems.sort(sortFn);
-    });
+    });    
 
     if (count) {
         sortedItems = sortedItems.slice(0,count);

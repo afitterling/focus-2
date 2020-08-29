@@ -10,9 +10,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 const items = JSON.parse(localStorage.getItem('items')) || [];
 const userId = JSON.parse(localStorage.getItem('userId')) || uuidv4();
+
 const initialState ={
   items: items,
-  userId: userId
+  userId: userId,
+  itemsRedux: items
 }
 
 localStorage.setItem('userId', JSON.stringify(userId));
