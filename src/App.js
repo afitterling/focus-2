@@ -192,7 +192,7 @@ class App extends React.Component {
                     onClick={this.menuItemClick}
                   >
                     <Icon name='braille' />
-                    Assistant
+                    Backlog <em>filtering</em>
                   </Menu.Item>
                 </Link>
                 <Link to="/assistant-2">
@@ -203,7 +203,7 @@ class App extends React.Component {
                     onClick={this.menuItemClick}
                   >
                     <Icon name='braille' />
-                    <em>Beta</em>
+                    Assistant <em>beta</em>
                   </Menu.Item>
                 </Link>
                 <Link to="/settings">

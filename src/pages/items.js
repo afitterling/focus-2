@@ -133,10 +133,10 @@ export class Items extends React.Component {
                     onDelete={this.props.onItemDelete}
                     sorterFns={[this.sorterDimensionsDesc('priority')]}
                     count={5}
-                    items={this.props.focusActive ? this.props.items.filter(i => i.focus && i.dimensions && parseInt(i.dimensions.priority)>0) : this.props.items.filter(i => i.dimensions && !!i.dimensions.priority)}>
+                    items={this.props.items.filter(i => i.focus && i.dimensions && parseInt(i.dimensions.priority)>0)}>
                 </GenericTable>
 
-                <GenericTable title={['Backlog', '']}
+                <GenericTable title={['Pending', '']}
                     displayName={['title', 'desc']}
                     onCellClick={this.onCellClick}
                     onDelete={this.props.onItemDelete}
